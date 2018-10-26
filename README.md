@@ -1,5 +1,5 @@
-Projeto Integrdor
-=================
+Projeto Integrador
+==================
 
 ## Matérias envolvidas:
 
