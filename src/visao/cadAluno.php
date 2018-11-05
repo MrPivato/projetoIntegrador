@@ -17,7 +17,7 @@ if (isset($_COOKIE["logado"])) {
     </head>
     <?php
     
-    include 'cabecalho.inc.php';
+    include 'inc/cabecalho.inc.php';
     
     ?>
     <body id="LoginForm">
