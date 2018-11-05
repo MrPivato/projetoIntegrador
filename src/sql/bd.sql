@@ -1,46 +1,46 @@
 CREATE TABLE Funcionario (
     id INTEGER PRIMARY KEY,
-    nome VARCHAR,
-    email VARCHAR,
-    senha VARCHAR,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    senha VARCHAR(100),
     status INTEGER
 );
 
 CREATE TABLE Categoria (
-    categoria VARCHAR PRIMARY KEY
+    categoria VARCHAR(100) PRIMARY KEY
 );
 
 CREATE TABLE Estudante (
-    matricula INTEGER PRIMARY KEY,
-    nome VARCHAR,
-    curso VARCHAR,
-    turma VARCHAR,
-    email VARCHAR,
+    matricula BIGINT PRIMARY KEY,
+    nome VARCHAR(100),
+    curso VARCHAR(100),
+    turma VARCHAR(100),
+    email VARCHAR(100),
     status INTEGER
 );
 
 CREATE TABLE Livro (
-    isbn INTEGER,
-    nome VARCHAR,
+    isbn VARCHAR(100),
+    nome VARCHAR(100),
     volume INTEGER,
-    autor VARCHAR,
+    autor VARCHAR(100),
     qtde_estoque INTEGER,
-    codBarras INTEGER PRIMARY KEY,
+    codBarras VARCHAR(100) PRIMARY KEY,
     status INTEGER,
-    condicao VARCHAR,
-    grande_area VARCHAR
+    condicao VARCHAR(100),
+    grande_area VARCHAR(100)
 );
 
 CREATE TABLE Emprestimo (
-    matriculaEstudante INTEGER,
-    codBarrasLivro INTEGER,
+    matriculaEstudante BIGINT,
+    codBarrasLivro VARCHAR(100),
     verificacaoEntrega INTEGER,
     id INTEGER PRIMARY KEY,
     dataDevolucao DATE,
     periodoEntrega DATE,
     statusEntrega INTEGER,
-    condicaoEntrega VARCHAR,
-    condicaoDevolucao VARCHAR,
+    condicaoEntrega VARCHAR(100),
+    condicaoDevolucao VARCHAR(100),
     dataDeEntrega DATE
 );
  
