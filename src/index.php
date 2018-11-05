@@ -1,2 +1,2 @@
 <?php
-// keep
+header("Location:visao/login.php");

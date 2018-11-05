@@ -37,7 +37,7 @@
 
         <div class="collapse navbar-collapse row" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown alert-light">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="false"
                         aria-expanded="true">
                         Alunos
