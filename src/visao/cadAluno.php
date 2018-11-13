@@ -1,12 +1,3 @@
-<?php
-session_start();
-if (isset($_COOKIE["logado"])) {
-    if ($_COOKIE["logado"] == 'on') {
-        $_SESSION["usuario"] = $_COOKIE["usuario"];
-        header("Location: index.php");
-    }
-}
-?>
 <!DOCTYPE html>
 <html>
     <head>

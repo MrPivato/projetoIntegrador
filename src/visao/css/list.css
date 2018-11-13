@@ -1,1 +1,8 @@
 .table-responsive{-sm|-md|-lg|-xl}
+
+
+.headTabela {
+	background-color: #33A047;
+	color: #f9f9f9;
+	border: 3px solid black;
+}

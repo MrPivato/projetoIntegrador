@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 if (isset($_COOKIE["logado"])) {
     if ($_COOKIE["logado"] == 'on') {
@@ -13,7 +13,7 @@ if (isset($_COOKIE["logado"])) {
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link href="css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body id="LoginForm">
         <div class="container">
