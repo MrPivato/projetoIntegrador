@@ -6,7 +6,6 @@ class Estudante implements IBaseModelo{
         private $matricula;
         private $nome;
         private $curso;
-        private $turma;
         private $email;
         private $status;
 
@@ -24,10 +23,6 @@ class Estudante implements IBaseModelo{
 
         public function getCurso() {
                 return $this->curso;
-        }
-
-        public function getTurma() {
-                return $this->turma;
         }
 
         public function getEmail() {
@@ -49,10 +44,6 @@ class Estudante implements IBaseModelo{
 
         public function setCurso($curso) {
                 $this->curso = $curso;
-        }
-
-        public function setTurma($turma) {
-                $this->turma = $turma;
         }
 
         public function setEmail($email) {
@@ -78,14 +69,13 @@ class Estudante implements IBaseModelo{
                 try{
                         //Comando SQL para inserir um estudante
                         $query="INSERT INTO Estudante 
-                                VALUES (:matricula, :nome, :curso, :turma, :email, :status) ";
+                                VALUES (:matricula, :nome, :curso, :email, :status) ";
 
                         $this->stmt= $this->conn->prepare($query);
 
                         $this->stmt->bindValue(':matricula', $this->nome, PDO::PARAM_INT);
                         $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
                         $this->stmt->bindValue(':curso', $this->curso, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':turma', $this->nome, PDO::PARAM_INT);
                         $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
                         $this->stmt->bindValue(':status', $this->nome, PDO::PARAM_INT);
 
@@ -105,7 +95,6 @@ class Estudante implements IBaseModelo{
                         $query="UPDATE Estudante 
                                 SET nome = :nome, 
                                     curso = :curso, 
-                                    turma = :turma, 
                                     email = :email, 
                                     status = :status 
                                 WHERE matricula=:matricula ";
@@ -114,7 +103,6 @@ class Estudante implements IBaseModelo{
                         $this->stmt->bindValue(':matricula', $this->nome, PDO::PARAM_INT);
                         $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
                         $this->stmt->bindValue(':curso', $this->curso, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':turma', $this->nome, PDO::PARAM_INT);
                         $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
                         $this->stmt->bindValue(':status', $this->nome, PDO::PARAM_INT);
 
