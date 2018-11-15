@@ -1,13 +1,12 @@
 ﻿<?php
     include_once 'inc/header.inc.php'
-    ?>
+?>
 <body>
     <br clear="all">
     <div class="container">
         <h2>Pesquisar</h2>
         <p>Digite algo para filtrar</p>
         <input class="form-control" id="myInput" type="text" placeholder="Digite algo aqui">
-        <br>
         <br>
         <table class="table table-bordered">
             <thead class="headTable">
@@ -29,7 +28,7 @@
                     <td>
                         <div class="container">
                             <p>
-                                <button class="btn btn-secondary bot-list" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                                <button class="btn btn-info bot-list" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
                                     aria-controls="collapseExample">
                                 Mostrar todas informações do livro
                                 </button>
@@ -113,7 +112,7 @@
                         </div>
                         <!-- -->
                         <!-- Mostrar todos -->
-                        <button type="button" class="btn btn-info text-light" data-toggle="modal" data-target="#cpp3"> 
+                        <button type="button" class="btn btn-primary text-light" data-toggle="modal" data-target="#cpp3"> 
                         <i class="fas fa-clipboard-list"></i>
                         </button>
                         <!-- Modal -->

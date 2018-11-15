@@ -14,7 +14,6 @@ CREATE TABLE Estudante (
     matricula BIGINT PRIMARY KEY,
     nome VARCHAR(100),
     curso VARCHAR(100),
-    turma VARCHAR(100),
     email VARCHAR(100),
     status INTEGER
 );
@@ -24,7 +23,6 @@ CREATE TABLE Livro (
     nome VARCHAR(100),
     volume INTEGER,
     autor VARCHAR(100),
-    qtde_estoque INTEGER,
     codBarras VARCHAR(100) PRIMARY KEY,
     status INTEGER,
     condicao VARCHAR(100),

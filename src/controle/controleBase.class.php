@@ -1,9 +1,6 @@
 <?php
-
-
 abstract class ControleBase {
 
-        
     public function controleAcao($acao,$param=null) {
         switch ($acao) {
             case "inserir":
@@ -36,5 +33,3 @@ abstract class ControleBase {
     
     abstract protected function listarUnico($param);
 }
-
-?>

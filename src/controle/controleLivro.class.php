@@ -32,9 +32,14 @@ class ControleLivro extends ControleBase {
     
     private function preencheModelo(){
         // Passa dados do formulário para a classe Livro
+        $this->livro->setCodBarras((isset($this->visao["codBarras"]) && $this->visao["codBarras"] != null) ? $this->visao["codBarras"] : "");
+        $this->livro->setIsbn((isset($this->visao["isbn"]) && $this->visao["nome"] != null) ? $this->visao["nome"] : "");
         $this->livro->setNome((isset($this->visao["nome"]) && $this->visao["nome"] != null) ? $this->visao["nome"] : "");
-        $this->livro->setSerie((isset($this->visao["serie"]) && $this->visao["serie"] != null) ? $this->visao["serie"] : "");        
-        $this->livro->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
+        $this->livro->setVolume((isset($this->visao["volume"]) && $this->visao["volume"] != null) ? $this->visao["volume"] : "");
+        $this->livro->setAutor((isset($this->visao["autor"]) && $this->visao["autor"] != null) ? $this->visao["autor"] : "");
+        $this->livro->setStatus((isset($this->visao["status"]) && $this->visao["status"] != null) ? $this->visao["status"] : "");
+        $this->livro->setCondicao((isset($this->visao["condicao"]) && $this->visao["condicao"] != null) ? $this->visao["condicao"] : "");
+        $this->livro->setGrande_area((isset($this->visao["grande_area"]) && $this->visao["grande_area"] != null) ? $this->visao["grande_area"] : "");
     }
     
     protected function inserir() {
@@ -53,7 +58,7 @@ class ControleLivro extends ControleBase {
 
     protected function excluir(){
         // Passa dados do formulário (via GET) para a classe Livro
-        $this->livro->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
+        $this->livro->setCodBarras((isset($this->visao["codBarras"]) && $this->visao["codBarras"] != null) ? $this->visao["codBarras"] : "");
         //Chama o método para excluir os dados no banco de dados
         return $this->livro->excluir();
     }
