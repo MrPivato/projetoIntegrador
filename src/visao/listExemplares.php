@@ -3,19 +3,17 @@
      ?>
 
     <body>
-        <br><br><br>
+
         <div class="container">
-            <h2>Pesquisar</h2>
-            <p>Digite algo para filtrar</p>  
-            <input class="form-control" id="myInput" type="text" placeholder="Digite algo aqui">
-            <br><br>
+        
+        <br clear="all"> 
             <table class="table table-bordered">
-                <thead class="headTabela">
+                <thead class="headTable">
                     <tr>
                         <th>Código</th>
                         <th>Status</th>
                         <th>Condições do livro</th>
-                        <th>Autor</th>
+
                        
                         
                     </tr>
@@ -36,19 +34,19 @@
   </div>
 </div>		</td>
                         <td>Fudido</td>
-                        <td>Marcos</td>
+
                     </tr>
 					 <tr>
                         <td>BIO0015</td>
                         <td>Emprestado</td>
                         <td>Fudido</td>
-                        <td>Marcos</td>
+
                     </tr>
 					 <tr>
                         <td>BIO0016</td>
                         <td>Disponível</td>
                         <td>Fudido</td>
-                        <td>Marcos</td>
+
                     </tr>
 					
 					

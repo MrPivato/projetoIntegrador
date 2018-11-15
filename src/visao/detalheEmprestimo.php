@@ -9,7 +9,7 @@
             <input class="form-control" id="myInput" type="text" placeholder="Digite algo aqui">
             <br><br>
             <table class="table table-bordered">
-                <thead class="headTabela">
+                <thead class="headTable">
                     <tr>
                         <th>Aluno</th>
                         <th>Livro</th>

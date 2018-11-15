@@ -1,13 +1,22 @@
 ﻿<?php
     include_once 'inc/header.inc.php'
-?>
+    ?>
 <body>
     <br clear="all">
     <div class="container">
+
         <h2>Pesquisar</h2>
-        <p>Digite algo para filtrar</p>
-        <input class="form-control" id="myInput" type="text" placeholder="Digite algo aqui">
-        <br>
+        <p>Selecione o filtro:</p>
+        
+        <input type="radio" name="filtro" value="0"> Curso
+        <input type="radio" name="filtro" value="1"> Nome
+        <input type="radio" name="filtro" value="2"> Dados Livro
+        <br clear="all"><br clear="all">       
+
+        <input class="form-control" onkeyup="filtrar()" id="inputPesquisa" type="text" placeholder="Pesquise aqui">
+
+        <br clear="all"> 
+
         <table class="table table-bordered">
             <thead class="headTable">
                 <tr>
@@ -21,14 +30,14 @@
                 <tr>
                     <td>INFO</td>
                     <td>
-                        <a href="#">Jose corno viado da silva</a>
+                        <a href="listAluno.php?{$registro['id']}">Jose corno viado da silva</a>
                         <hr>
                         <b>201710040123</b>
                     </td>
                     <td>
                         <div class="container">
                             <p>
-                                <button class="btn btn-info bot-list" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                                <button class="btn btn-secondary bot-list" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
                                     aria-controls="collapseExample">
                                 Mostrar todas informações do livro
                                 </button>
@@ -112,16 +121,16 @@
                         </div>
                         <!-- -->
                         <!-- Mostrar todos -->
-                        <button type="button" class="btn btn-primary text-light" data-toggle="modal" data-target="#cpp3"> 
+                        <button type="button" class="btn btn-info text-light" data-toggle="modal" data-target="#cpp3"> 
                         <i class="fas fa-clipboard-list"></i>
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="cpp3" tabindex="-1" role="dialog" aria-labelledby="cpp3" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
                                     <?php 
-                                        include_once "listAluno.php";
+                                        include_once "listExemplares.php";
                                     ?>
                                 </div>
                             </div>
@@ -131,13 +140,7 @@
                 </tr>
             </tbody>
         </table>
-        <!--
-        <p>Nota: talvez seja um problema ja q filtra tudo q digitar</p>
-        <p>Nota: link aluno para detalhes dele</p>
-        <p>Nota: adicionar carrosel home </p>
-        <p>Nota: tooltips</p>
-        <p>Nota: Quando clicar em mostrar todos empréstimos, só mostra tabela</p>
-        -->
+       
     </div>
 </body>
 </html>
