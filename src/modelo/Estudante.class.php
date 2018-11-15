@@ -13,7 +13,7 @@ class Estudante implements IBaseModelo{
         private $stmt;
 // ------------------------------------------
 // gets -------------------------------------
-        public function getId() {
+        public function getMatricula() {
                 return $this->matricula;
         }
 
@@ -34,7 +34,7 @@ class Estudante implements IBaseModelo{
         }
 // ------------------------------------------
 // sets -------------------------------------
-        public function setId($matricula) {
+        public function setMatricula($matricula) {
                 $this->matricula = $matricula;
         }
 
@@ -73,11 +73,11 @@ class Estudante implements IBaseModelo{
 
                         $this->stmt= $this->conn->prepare($query);
 
-                        $this->stmt->bindValue(':matricula', $this->nome, PDO::PARAM_INT);
+                        $this->stmt->bindValue(':matricula', $this->matricula, PDO::PARAM_STR);
                         $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
                         $this->stmt->bindValue(':curso', $this->curso, PDO::PARAM_STR);
                         $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':status', $this->nome, PDO::PARAM_INT);
+                        $this->stmt->bindValue(':status', $this->status, PDO::PARAM_STR);
 
                         if($this->stmt->execute()){
                                 return true;
@@ -100,11 +100,11 @@ class Estudante implements IBaseModelo{
                                 WHERE matricula=:matricula ";
                         $this->stmt= $this->conn->prepare($query);
 
-                        $this->stmt->bindValue(':matricula', $this->nome, PDO::PARAM_INT);
+                        $this->stmt->bindValue(':matricula', $this->nome, PDO::PARAM_STR);
                         $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
                         $this->stmt->bindValue(':curso', $this->curso, PDO::PARAM_STR);
                         $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':status', $this->nome, PDO::PARAM_INT);
+                        $this->stmt->bindValue(':status', $this->nome, PDO::PARAM_STR);
 
 
                         if($this->stmt->execute()){
@@ -122,7 +122,7 @@ class Estudante implements IBaseModelo{
                         $query="DELETE FROM Estudante 
                                 WHERE matricula=:matricula ";
                         $this->stmt= $this->conn->prepare($query);
-                        $this->stmt->bindValue(':matricula', $this->matricula, PDO::PARAM_INT);
+                        $this->stmt->bindValue(':matricula', $this->matricula, PDO::PARAM_STR);
                         if($this->stmt->execute()){
                                 return true;
                         }        
@@ -168,7 +168,7 @@ class Estudante implements IBaseModelo{
                 try{
                         $query="SELECT matricula,nome,curso,turma,email,status FROM Estudante WHERE matricula=:matricula";
                         $this->stmt= $this->conn->prepare($query);
-                        $this->stmt->bindValue(':matricula', $matricula, PDO::PARAM_INT);
+                        $this->stmt->bindValue(':matricula', $matricula, PDO::PARAM_STR);
 
                         if($this->stmt->execute()){
                                 // Associa o registro a uma classe Estudante

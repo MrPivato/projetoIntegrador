@@ -37,7 +37,7 @@
                     <td>
                         <div class="container">
                             <p>
-                                <button class="btn btn-secondary bot-list" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                                <button class="btn btn-info bot-list" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
                                     aria-controls="collapseExample">
                                 Mostrar todas informações do livro
                                 </button>

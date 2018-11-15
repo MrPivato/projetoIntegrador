@@ -1,0 +1,93 @@
+    body#LoginForm{ 
+      background: url(../img/v.jpg) fixed no-repeat;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+		
+	}
+	
+	.backIMG{
+		height:100%;
+		width:100%;
+	}
+	
+    h1{
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+    .ifrs-image img{
+    margin-left: 25%;
+    width: 50%;
+    padding: 0px;
+    }
+    
+    .form-heading { 
+        color:#fff; 
+        font-size:23px;
+    }
+
+    .panel h2 { 
+        color:#fff;
+        text-align: center;
+        margin: 0px;
+        padding: 7px 0px 20px 0px;
+    }
+    .panel{
+      background-color: #33A047;
+      border-radius: 28px 28px 30px 30px ;
+      margin: 0px auto 0px;
+      padding: 0px 0px 0px 0px;
+    }
+
+    .login-form .form-control {
+      margin-left: 10%;
+      margin-right: 10%;
+      background: #f7f7f7 none repeat scroll 0 0;
+      border: 1px solid #33A047;
+      border-radius: 5px;
+      font-size: 14px;
+      height: 50px;
+      width: 80%;
+    }
+    .main-div {
+      background: #ffffff none repeat scroll 0 0;
+      border-radius: 40px 40px 10px 8px ;
+      margin: 0px auto 30px;
+      max-width: 38%;
+      padding: 0px 0px 12px 0px;
+    }
+
+    .login-form .form-group {
+      margin-bottom:10px;
+    }
+    .login-form{ 
+        text-align:center;
+    }
+    .login-form  .btn.btn-primary {
+      background: #33A047 none repeat scroll 0 0;
+      border-color: black;
+      color: #ffffff;
+      font-size: 14px;
+      width: 80%;
+      height: 50px;
+      line-height: 50px;
+      padding: 0px;;
+	  margin-bottom: 15px;
+    }
+    .login-form .btn.btn-primary.reset {
+        background:#ff0000 none repeat scroll 0 0;
+		padding-top: 100px;
+    }
+    .botao-rst{
+      border: black solid 1.3px;
+      border-radius:4px;
+      color: #ffffff;
+      font-size: 14px;
+      width: 80%;
+      height: 50px;
+      line-height: 50px;
+      padding: 0px;
+      background:#ff3333 none repeat scroll 0 0;
+    }
+  
