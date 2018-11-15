@@ -3,7 +3,7 @@ CREATE TABLE Funcionario (
     nome VARCHAR(100),
     email VARCHAR(100),
     senha VARCHAR(100),
-    status INTEGER
+    status VARCHAR(50)
 );
 
 CREATE TABLE Categoria (
@@ -11,11 +11,11 @@ CREATE TABLE Categoria (
 );
 
 CREATE TABLE Estudante (
-    matricula BIGINT PRIMARY KEY,
+    matricula CHAR(12) PRIMARY KEY,
     nome VARCHAR(100),
     curso VARCHAR(100),
     email VARCHAR(100),
-    status INTEGER
+    status VARCHAR(50)
 );
 
 CREATE TABLE Livro (
@@ -24,19 +24,19 @@ CREATE TABLE Livro (
     volume INTEGER,
     autor VARCHAR(100),
     codBarras VARCHAR(100) PRIMARY KEY,
-    status INTEGER,
+    status VARCHAR(50),
     condicao VARCHAR(100),
     grande_area VARCHAR(100)
 );
 
 CREATE TABLE Emprestimo (
-    matriculaEstudante BIGINT,
+    matriculaEstudante CHAR(12),
     codBarrasLivro VARCHAR(100),
     verificacaoEntrega INTEGER,
     id INTEGER PRIMARY KEY,
     dataDevolucao DATE,
     periodoEntrega DATE,
-    statusEntrega INTEGER,
+    statusEntrega VARCHAR(50),
     condicaoEntrega VARCHAR(100),
     condicaoDevolucao VARCHAR(100),
     dataDeEntrega DATE
