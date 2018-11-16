@@ -1,0 +1,29 @@
+elseif($_GET){ // Caso os dados sejam enviados via GET
+   
+    //Cria o Controle desta View (página)
+    $estudanteControle = new ControleEstudante();
+    //Passa o GET desta View para o Controle
+    $estudanteControle->setVisao($_GET);
+            
+    //Verifico qual operação será realizada
+    if(isset($_GET["op"])){
+        
+        //Verifico a existência dos campos obrigatórios
+        if (isset($_GET["id"])) {
+            
+            //Verifica qual ação (excluir ou listar para alteração) vai passar para o Controle
+            if($_GET["op"] == "exc"){
+                // excluir o estudante do banco de dados
+                $retorno=$estudanteControle->controleAcao("excluir");
+                if($retorno) {$msg="Estudante excluído com sucesso!";}
+                else{$erro="Houve um erro na exclusão do estudante!";}
+            }elseif ($_GET["op"] == "alt") {
+                // O $estudanteAlteracao será utilizado no formulário para preencher os dados do estudante 
+                // que foram pesquisados no banco de dados
+                $estudanteAlteracao = $estudanteControle->controleAcao("listarUnico",$_GET["id"]);
+                
+            }
+        }    
+
+    }    
+}

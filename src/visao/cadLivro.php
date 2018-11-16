@@ -7,7 +7,7 @@
 		<?php
 			include "inc/header.inc.php";
 		?>
-	<form action="aa.php" method="POST" name="cad_livro">
+	<form action="cadLivro.php" method="POST" name="cad_livro">
         <div class="container">
 		<br clear="all">
             <div class="main-div">
@@ -48,10 +48,6 @@
 					<label for="autor">Informe o autor</label>
                     <input id="autor" name="autor" type="text" placeholder="Informe o autor" class="form-control" required="">
             </div>
-            <div class="form-group">
-				<label for="Quantidade em estoque">Informe a quantidade em estoque</label>
-                <input id="qtde_estoque" name="qtde_estoque" type="text" placeholder="Informe a quantidade em estoque" class="form-control" required="">
-            </div> 
 			<div class="form-group">
 				<label for="ISBN">Informe o ISBN</label>
                 <input  id="ISBN" name="ISBN" type="number" placeholder="Informe o ISBN" class="form-control" required="" style="padding-top:0px;">

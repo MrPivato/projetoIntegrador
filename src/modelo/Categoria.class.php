@@ -1,41 +1,34 @@
 <?php
 
-// vars -------------------------------------
 class Categoria implements IBaseModelo{
 
+        // vars -------------------------------------
         private $categoria;
-       
 
         private $conn;
         private $stmt;
 
-// ------------------------------------------
-// gets -------------------------------------
+        // ------------------------------------------
+        // gets -------------------------------------
         public function getCategoria() {
                 return $this->categoria;
         }        
-
-
-
-// ------------------------------------------
-// sets -------------------------------------
+        // ------------------------------------------
+        // sets -------------------------------------
         public function setCategoria($categoria) {
                 $this->categoria = $categoria;
         }
-
-       
-        
-// ------------------------------------------
+        // ------------------------------------------
         public function __construct() {
                 //Cria conexão com o banco
-                 $this->conn = Database::conectar();
+                $this->conn = Database::conectar();
         }
 
         public function __destruct(){
                 //Fecha a conexão
                 Database::desconectar();
         }
-// ------------------------------------------
+        // ------------------------------------------
 
         public function inserir(){
                 try{
@@ -46,7 +39,7 @@ class Categoria implements IBaseModelo{
                         $this->stmt= $this->conn->prepare($query);
 
                         $this->stmt->bindValue(':categoria', $this->categoria, PDO::PARAM_STR);
-                       
+
 
                         if($this->stmt->execute()){
                                 return true;
@@ -63,17 +56,18 @@ class Categoria implements IBaseModelo{
                         //Comando SQL para inserir um estudante
                         $query="UPDATE Categoria 
                                 SET categoria = :categoria
-                                   
+
                                 WHERE categoria=:categoria ";
                         $this->stmt= $this->conn->prepare($query);
 
                         $this->stmt->bindValue(':categoria', $this->categoria, PDO::PARAM_STR);
-                        
+
 
 
                         if($this->stmt->execute()){
                                 return true;
                         }        
+
                 } catch(PDOException $e) {
                         echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";      
                         return false;

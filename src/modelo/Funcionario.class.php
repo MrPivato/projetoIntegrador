@@ -1,8 +1,8 @@
 <?php
 
-// vars -------------------------------------
 class Funcionario implements IBaseModelo{
 
+        // vars -------------------------------------
         private $id;
         private $nome;
         private $curso;
@@ -12,8 +12,8 @@ class Funcionario implements IBaseModelo{
 
         private $conn;
         private $stmt;
-// ------------------------------------------
-// gets -------------------------------------
+        // ------------------------------------------
+        // gets -------------------------------------
         public function getId() {
                 return $this->id;
         }
@@ -37,8 +37,8 @@ class Funcionario implements IBaseModelo{
         public function getStatus() {
                 return $this->status;
         }
-// ------------------------------------------
-// sets -------------------------------------
+        // ------------------------------------------
+        // sets -------------------------------------
         public function setId($id) {
                 $this->id = $id;
         }
@@ -62,7 +62,7 @@ class Funcionario implements IBaseModelo{
         public function setStatus($status) {
                 $this->status = $status;
         }
-// ------------------------------------------
+        // ------------------------------------------
         public function __construct() {
                 //Cria conexão com o banco
                 $this->conn = Database::conectar();
@@ -72,7 +72,7 @@ class Funcionario implements IBaseModelo{
                 //Fecha a conexão
                 Database::desconectar();
         }
-// ------------------------------------------
+        // ------------------------------------------
 
         public function inserir(){
                 try{
@@ -104,10 +104,10 @@ class Funcionario implements IBaseModelo{
                         //Comando SQL para inserir um funcionario
                         $query="UPDATE Funcionario 
                                 SET nome = :nome, 
-                                    curso = :curso, 
-                                    turma = :turma, 
-                                    email = :email, 
-                                    status = :status 
+                                curso = :curso, 
+                                turma = :turma, 
+                                email = :email, 
+                                status = :status 
                                 WHERE id=:id ";
                         $this->stmt= $this->conn->prepare($query);
 

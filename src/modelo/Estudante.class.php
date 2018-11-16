@@ -1,8 +1,8 @@
 <?php
 
-// vars -------------------------------------
 class Estudante implements IBaseModelo{
 
+        // vars -------------------------------------
         private $matricula;
         private $nome;
         private $curso;
@@ -11,8 +11,8 @@ class Estudante implements IBaseModelo{
 
         private $conn;
         private $stmt;
-// ------------------------------------------
-// gets -------------------------------------
+        // ------------------------------------------
+        // gets -------------------------------------
         public function getMatricula() {
                 return $this->matricula;
         }
@@ -32,8 +32,8 @@ class Estudante implements IBaseModelo{
         public function getStatus() {
                 return $this->status;
         }
-// ------------------------------------------
-// sets -------------------------------------
+        // ------------------------------------------
+        // sets -------------------------------------
         public function setMatricula($matricula) {
                 $this->matricula = $matricula;
         }
@@ -53,7 +53,7 @@ class Estudante implements IBaseModelo{
         public function setStatus($status) {
                 $this->status = $status;
         }
-// ------------------------------------------
+        // ------------------------------------------
         public function __construct() {
                 //Cria conexão com o banco
                 $this->conn = Database::conectar();
@@ -63,7 +63,7 @@ class Estudante implements IBaseModelo{
                 //Fecha a conexão
                 Database::desconectar();
         }
-// ------------------------------------------
+        // ------------------------------------------
 
         public function inserir(){
                 try{
@@ -94,9 +94,9 @@ class Estudante implements IBaseModelo{
                         //Comando SQL para inserir um estudante
                         $query="UPDATE Estudante 
                                 SET nome = :nome, 
-                                    curso = :curso, 
-                                    email = :email, 
-                                    status = :status 
+                                curso = :curso, 
+                                email = :email, 
+                                status = :status 
                                 WHERE matricula=:matricula ";
                         $this->stmt= $this->conn->prepare($query);
 
@@ -140,10 +140,10 @@ class Estudante implements IBaseModelo{
                         //Comando SQL para inserir um estudante
                         if(!is_null($nome)){
                                 //Pesquisa pelo nome
-                                $query="SELECT matricula,nome,curso,turma,email,status FROM Estudante WHERE nome LIKE :nome";
+                                $query="SELECT matricula,nome,curso,email,status FROM Estudante WHERE nome LIKE :nome";
                         }else{
                                 // Pesquisa todos
-                                $query="SELECT matricula,nome,curso,turma,email,status FROM Estudante";
+                                $query="SELECT matricula,nome,curso,email,status FROM Estudante";
                         }
                         $this->stmt= $this->conn->prepare($query);
                         if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
@@ -166,7 +166,7 @@ class Estudante implements IBaseModelo{
         public function listarUnico($matricula){
 
                 try{
-                        $query="SELECT matricula,nome,curso,turma,email,status FROM Estudante WHERE matricula=:matricula";
+                        $query="SELECT matricula,nome,curso,email,status FROM Estudante WHERE matricula=:matricula";
                         $this->stmt= $this->conn->prepare($query);
                         $this->stmt->bindValue(':matricula', $matricula, PDO::PARAM_STR);
 
@@ -182,5 +182,63 @@ class Estudante implements IBaseModelo{
                         return null;
                 }
 
+        }
+
+        public function printTodos($estudantes)
+        {
+                if(!empty($estudantes)){
+                        foreach ($estudantes as $est) {
+                                echo "<tr>
+                                        <td>".$est->getMatricula()."</td>
+                                        <td>".$est->getNome()."</td>
+                                        <td>".$est->getCurso()."</td>
+                                        <td>".$est->getEmail()."</td>
+                                        <td>".$est->getStatus()."</td>
+                                        " ;  
+                                echo '
+                              <td>
+                            <!-- Alterar -->
+                            <button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#exampleModalCenter">
+                            <i class="fas fa-edit"></i>
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                               <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                     <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
+                  '.
+                                        //include_once "formCadAluno.php";
+                              '.
+                                  </div>
+                               </div>
+                            </div>
+                            <!-- Deletar -->
+                            <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
+                            <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
+                               <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                     <div class=\'modal-body\'>
+                                        <p class=\'text-dark\'>Deseja realmente excluir?</p>
+                                     </div>
+                                     <div class=\'modal-footer\'>
+                                        <a href=\'listcrianca.php?id={$registro[\' id \']}\' type=\'button\' class=\'btn btn-success\' id=\'delete\'>Confirmar</a>
+                                        <button type=\'button\' data-dismiss=\'modal\' class=\'btn btn-danger\'>Cancelar</button>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <!-- Mostrar todos -->
+                            <a href=\'listEmprestimos.php?id={$registro[\' id \']}\' class="btn btn-info text-light">
+                            <i class="fas fa-clipboard-list"></i>
+                            </a>
+                            <!-- -->
+                         </td>
+                       </tr>
+                                  ';
+                        }
+                }
         }
 }

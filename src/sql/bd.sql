@@ -1,5 +1,5 @@
-create database projetoIntegrador;
-use projetoIntegrador;
+CREATE DATABASE projetoIntegrador;
+USE projetoIntegrador;
 
 CREATE TABLE Funcionario (
     id INTEGER PRIMARY KEY,
@@ -13,13 +13,9 @@ CREATE TABLE Categoria (
     categoria VARCHAR(100) PRIMARY KEY
 );
 
-select * from Curso;
-select * from Categoria;
-
 CREATE TABLE Curso (
     curso VARCHAR(100) PRIMARY KEY
 );
-
 
 CREATE TABLE Estudante (
     matricula CHAR(12) PRIMARY KEY,
