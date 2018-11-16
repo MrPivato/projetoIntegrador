@@ -1,3 +1,6 @@
+create database projetoIntegrador;
+use projetoIntegrador;
+
 CREATE TABLE Funcionario (
     id INTEGER PRIMARY KEY,
     nome VARCHAR(100),
@@ -9,6 +12,14 @@ CREATE TABLE Funcionario (
 CREATE TABLE Categoria (
     categoria VARCHAR(100) PRIMARY KEY
 );
+
+select * from Curso;
+select * from Categoria;
+
+CREATE TABLE Curso (
+    curso VARCHAR(100) PRIMARY KEY
+);
+
 
 CREATE TABLE Estudante (
     matricula CHAR(12) PRIMARY KEY,
@@ -45,6 +56,11 @@ CREATE TABLE Emprestimo (
 ALTER TABLE Livro ADD CONSTRAINT FK_Livro_2
     FOREIGN KEY (grande_area)
     REFERENCES Categoria (categoria)
+    ON DELETE RESTRICT;
+ 
+ ALTER TABLE Estudante ADD CONSTRAINT FK_Estudante_2
+    FOREIGN KEY (curso)
+    REFERENCES Curso (curso)
     ON DELETE RESTRICT;
  
 ALTER TABLE Emprestimo ADD CONSTRAINT FK_Emprestimo_1
