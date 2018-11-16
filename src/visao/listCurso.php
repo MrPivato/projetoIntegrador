@@ -28,7 +28,7 @@
                 <tr>
 
                     <td>
-                        Biologia
+                        Agropecuária
                     </td>
 
                     <td>
@@ -116,12 +116,9 @@
     
                         </td>
                     </tr>
-
             </tbody>
         </table>
-
     </div>
-
 </body>
 
 </html>
