@@ -21,7 +21,6 @@ include_once 'inc/header.inc.php'
                 <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselHome" data-slide-to="1"></li>
                 <li data-target="#carouselHome" data-slide-to="2"></li>
-                <li data-target="#carouselHome" data-slide-to="3"></li>
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -38,13 +37,7 @@ include_once 'inc/header.inc.php'
                         
                         </div>
                 </div>
-                <div class="carousel-item">
-                        <img src="img/imtemporaria2.jpg" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                        <h5><a class="ahome2 nav-link" href="cadCad.php">Cadastrar Categorias</a></h5>
-                        
-                        </div>
-                </div>
+               
                 <div class="carousel-item">
                         <img src="img/imtemporaria2.jpg" alt="...">
                         <div class="carousel-caption d-none d-md-block">
