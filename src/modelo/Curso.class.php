@@ -1,9 +1,9 @@
 <?php
 
 // vars -------------------------------------
-class Categoria implements IBaseModelo{
+class Curso implements IBaseModelo{
 
-        private $categoria;
+        private $curso;
        
 
         private $conn;
@@ -11,16 +11,16 @@ class Categoria implements IBaseModelo{
 
 // ------------------------------------------
 // gets -------------------------------------
-        public function getCategoria() {
-                return $this->categoria;
+        public function getCurso() {
+                return $this->curso;
         }        
 
 
 
 // ------------------------------------------
 // sets -------------------------------------
-        public function setCategoria($categoria) {
-                $this->categoria = $categoria;
+        public function setCurso($curso) {
+                $this->curso = $curso;
         }
 
        
@@ -39,13 +39,13 @@ class Categoria implements IBaseModelo{
 
         public function inserir(){
                 try{
-                        //Comando SQL para inserir um estudante
-                        $query="INSERT INTO Categoria 
-                                VALUES (:categoria) ";
+                        //Comando SQL para inserir um curso
+                        $query="INSERT INTO Curso 
+                                VALUES (:curso) ";
 
                         $this->stmt= $this->conn->prepare($query);
 
-                        $this->stmt->bindValue(':categoria', $this->categoria, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':curso', $this->curso, PDO::PARAM_STR);
                        
 
                         if($this->stmt->execute()){
@@ -60,14 +60,14 @@ class Categoria implements IBaseModelo{
         public function alterar(){
                 try{
 
-                        //Comando SQL para inserir um estudante
-                        $query="UPDATE Categoria 
-                                SET categoria = :categoria
+                        //Comando SQL para inserir um curso
+                        $query="UPDATE Curso 
+                                SET curso = :curso
                                    
-                                WHERE categoria=:categoria ";
+                                WHERE curso=:curso ";
                         $this->stmt= $this->conn->prepare($query);
 
-                        $this->stmt->bindValue(':categoria', $this->categoria, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':curso', $this->curso, PDO::PARAM_STR);
                         
 
 
@@ -82,11 +82,11 @@ class Categoria implements IBaseModelo{
 
         public function excluir(){
                 try{
-                        //Comando SQL para inserir um estudante
-                        $query="DELETE FROM Categoria 
-                                WHERE categoria=:categoria ";
+                        //Comando SQL para inserir um curso
+                        $query="DELETE FROM Curso 
+                                WHERE curso=:curso ";
                         $this->stmt= $this->conn->prepare($query);
-                        $this->stmt->bindValue(':categoria', $this->categoria, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':curso', $this->curso, PDO::PARAM_STR);
                         if($this->stmt->execute()){
                                 return true;
                         }        
@@ -99,27 +99,27 @@ class Categoria implements IBaseModelo{
         public function listarTodos($nome=null){
 
                 try{
-                        $estudantes = array();
+                        $curso = array();
 
-                        //Comando SQL para inserir um estudante
+                        //Comando SQL para inserir um curso
                         if(!is_null($nome)){
                                 //Pesquisa pelo nome
-                                $query="SELECT categoria FROM Categoria WHERE categoria LIKE :categoria";
+                                $query="SELECT matricula,nome,curso,turma,email,status FROM Curso WHERE nome LIKE :nome";
                         }else{
                                 // Pesquisa todos
-                                $query="SELECT categoria FROM Categoria";
+                                $query="SELECT matricula,nome,curso,turma,email,status FROM Curso";
                         }
                         $this->stmt= $this->conn->prepare($query);
-                        if(!is_null($nome))$this->stmt->bindValue(':categoria', '%'.$nome.'%', PDO::PARAM_STR);
+                        if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
 
                         if($this->stmt->execute()){
-                                // Associa cada registro a uma classe Estudante
+                                // Associa cada registro a uma classe Curso
                                 // Depois, coloca os resultados em um array
-                                $categoria = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Categoria");  
+                                $curso = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Curso");  
 
                         }
 
-                        return $categoria;            
+                        return $curso;            
                 } catch(PDOException $e) {
                         echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";   
                         return null;
@@ -130,17 +130,17 @@ class Categoria implements IBaseModelo{
         public function listarUnico($matricula){
 
                 try{
-                        $query="SELECT categoria FROM Categoria WHERE categoria=:categoria";
+                        $query="SELECT matricula,nome,curso,turma,email,status FROM Curso WHERE matricula=:matricula";
                         $this->stmt= $this->conn->prepare($query);
-                        $this->stmt->bindValue(':categoria', $matricula, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':matricula', $matricula, PDO::PARAM_STR);
 
                         if($this->stmt->execute()){
-                                // Associa o registro a uma classe Categoria
-                                $categoria = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Categoria");  
+                                // Associa o registro a uma classe Curso
+                                $curso = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Curso");  
 
                         }
 
-                        return $categoria[0];            
+                        return $curso[0];            
                 } catch(PDOException $e) {
                         echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";   
                         return null;
