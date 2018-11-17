@@ -1,4 +1,18 @@
 <?php
+//Include das classes via autoload
+include_once '../autoload.php';
+//Cria o Controle desta View e instaância o Estudante
+$cursoControle = new ControleCurso();
+$list = new Curso;
+
+$curso = array();
+$curso = $cursoControle->controleAcao("listarTodos");
+// Vamos fazer um include só com o form, que passa informaçoes para
+// outra página, e está faz as alterações
+// daí redireciona pra esta aqui
+?>
+
+<?php
      include_once 'inc/header.inc.php'
      ?>
 
@@ -27,95 +41,10 @@
             <tbody id="myTable">
                 <tr>
 
-                    <td>
-                        Agropecuária
-                    </td>
-
-                    <td>
-                        <!-- Alterar -->
-                        <button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#cpp">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="cpp" tabindex="-1" role="dialog" aria-labelledby="cpp" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
-                                    <?php 
-                                        include_once "cadAluno.php";
-                                        ?>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- -->
-                        <!-- Deletar -->
-                        <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class='modal-body'>
-                                        <p class='text-dark'>Deseja realmente excluir?</p>
-                                    </div>
-                                    <div class='modal-footer'>
-                                        <a href='listcrianca.php?id={$registro[' id ']}' type='button' class='btn btn-success' id='delete'>Confirmar</a>
-                                        <button type='button' data-dismiss='modal' class='btn btn-danger'>Cancelar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- -->
-
-                    </td>
+                <?php 
+$list->printTodos($curso);
+?>
                 </tr>
-
-                <tr>
-
-                        <td>
-                            Gay
-                        </td>
-    
-                        <td>
-                            <!-- Alterar -->
-                            <button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#cpp">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="cpp" tabindex="-1" role="dialog" aria-labelledby="cpp" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
-                                        <?php 
-                                            include_once "cadAluno.php";
-                                            ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- -->
-                            <!-- Deletar -->
-                            <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class='modal-body'>
-                                            <p class='text-dark'>Deseja realmente excluir?</p>
-                                        </div>
-                                        <div class='modal-footer'>
-                                            <a href='listcrianca.php?id={$registro[' id ']}' type='button' class='btn btn-success' id='delete'>Confirmar</a>
-                                            <button type='button' data-dismiss='modal' class='btn btn-danger'>Cancelar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- -->
-    
-                        </td>
-                    </tr>
             </tbody>
         </table>
     </div>
