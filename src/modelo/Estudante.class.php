@@ -198,20 +198,9 @@ class Estudante implements IBaseModelo{
                                 echo '
                               <td>
                             <!-- Alterar -->
-                            <button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#exampleModalCenter">
+                            <a href="../visao/cadAluno.php?matricula='.$est->getMatricula().'"><button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fas fa-edit"></i>
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                               <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                     <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
-                  '.
-                                        //include_once "formCadAluno.php";
-                              '.
-                                  </div>
-                               </div>
-                            </div>
+                            </button></a>
                             <!-- Deletar -->
                             <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
                             <i class="fas fa-trash-alt"></i>
