@@ -1,0 +1,51 @@
+.phome{
+        background-color: #eee;
+        text-align: justify;
+}
+
+.ahome{
+        background-color: #eee;
+        text-align: center;
+        font-size: 2em;
+}
+
+
+.ahome1{
+        text-align: center;
+        font-size: 1em;
+}
+
+.floatright{
+        float: right;
+}
+
+.aaa{
+        margin-left: 65%;
+}
+
+.navHeader{
+        color: whitesmoke;
+}
+
+.navHeader:hover{
+        color: rgb(185, 185, 185);
+}
+
+.bot-list{
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 100%;
+}
+
+.headTable{
+        background-color:#33A047;
+        color: #f9f9f9;
+}
+
+.navbar-toggler {
+        background-color: #f9f9f9;
+}
+
+.navHome{
+        margin-right: 5%;
+}
