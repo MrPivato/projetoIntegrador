@@ -96,13 +96,13 @@ class Curso implements IBaseModelo{
                 }
         }
 
-        public function listarTodos($nome=null){
+        public function listarTodos($curso=null){
 
                 try{
-                        $curso = array();
+                        $cursos = array();
 
                         //Comando SQL para inserir um curso
-                        if(!is_null($nome)){
+                        if(!is_null($curso)){
                                 //Pesquisa pelo nome
                                 $query="SELECT * FROM Curso WHERE curso LIKE :curso";
                         }else{
@@ -110,7 +110,7 @@ class Curso implements IBaseModelo{
                                 $query="SELECT * FROM Curso";
                         }
                         $this->stmt= $this->conn->prepare($query);
-                        if(!is_null($nome))$this->stmt->bindValue(':curso', '%'.$nome.'%', PDO::PARAM_STR);
+                        if(!is_null($curso))$this->stmt->bindValue(':curso', '%'.$curso.'%', PDO::PARAM_STR);
 
                         if($this->stmt->execute()){
                                 // Associa cada registro a uma classe Curso
@@ -148,15 +148,55 @@ class Curso implements IBaseModelo{
 
         }
 
-        public function printCursos($cursos)
+        public function printTodos($curso)
         {
-                if(!empty($cursos))
-                {
-                        foreach($cursos as $cur)
-                        {
-                                echo "<option>".$cur->getCurso()."</option>";
+                if(!empty($curso)){
+                        foreach ($curso as $est) {
+                                echo "<tr>
+                                        <td>".$est->getCurso()."</td>
+                                        
+                                        " ;  
+                                echo '
+                              <td>
+                            <!-- Alterar -->
+                            <button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#exampleModalCenter">
+                            <i class="fas fa-edit"></i>
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                               <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                     <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
+                  '.
+                                        //include_once "cadCurso.php";
+                              '.
+                                  </div>
+                               </div>
+                            </div>
+                            <!-- Deletar -->
+                            <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
+                            <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
+                               <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                     <div class=\'modal-body\'>
+                                        <p class=\'text-dark\'>Deseja realmente excluir?</p>
+                                     </div>
+                                     <div class=\'modal-footer\'>
+                                        <a href=\'listcrianca.php?id={$registro[\' id \']}\' type=\'button\' class=\'btn btn-success\' id=\'delete\'>Confirmar</a>
+                                        <button type=\'button\' data-dismiss=\'modal\' class=\'btn btn-danger\'>Cancelar</button>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                           
+                            <!-- -->
+                         </td>
+                       </tr>
+                                  ';
                         }
                 }
-
         }
 }
