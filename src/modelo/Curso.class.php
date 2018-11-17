@@ -148,6 +148,15 @@ class Curso implements IBaseModelo{
 
         }
 
+        public function printCursos($curso)
+        {
+                if(!empty($curso)){
+                        foreach ($curso as $est) {
+                                echo "<option>".$est->getCurso()."</option>";
+                        }
+                }
+        }
+
         public function printTodos($curso)
         {
                 if(!empty($curso)){
