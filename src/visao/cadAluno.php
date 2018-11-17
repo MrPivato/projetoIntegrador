@@ -66,7 +66,7 @@ $listCursos = new Curso;
 $cursos = array();
 $cursos = $cursoControle->controleAcao("listarTodos");
 
-$listCursos->printTodos($cursos);
+$listCursos->printCursos($cursos);
 ?>
                   </select>
                </div>
