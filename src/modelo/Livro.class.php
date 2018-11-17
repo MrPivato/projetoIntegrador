@@ -11,9 +11,14 @@ class Livro implements IBaseModelo{
         private $status;
         private $condicao;
         private $grande_area;
+        private $quantidade;
+      
+
 
         private $conn;
         private $stmt;
+
+       
         // ------------------------------------------
         // gets -------------------------------------
         public function getIsbn() {
@@ -47,6 +52,13 @@ class Livro implements IBaseModelo{
         public function getGrande_area() {
                 return $this->grande_area;
         }
+
+        public function getQuantidade() {
+                return $this->quantidade;
+        }
+
+
+
         // ------------------------------------------
         // sets -------------------------------------
         public function setIsbn($isbn) {
@@ -80,6 +92,11 @@ class Livro implements IBaseModelo{
         public function setGrande_area($grande_area) {
                 $this->grande_area = $grande_area;
         }
+
+        public function setQuantidade($quantidade) {
+                $this->quantidade = $quantidade;
+        }
+        
         // ------------------------------------------
         public function __construct() {
                 //Cria conexão com o banco
@@ -92,32 +109,45 @@ class Livro implements IBaseModelo{
         }
         // ------------------------------------------
 
+/////////// em último caso eu acho melhor deixar ele gerando aleatório o código
+/////////// arrumar  a parte de gerar o código de barras e a parte do loop de inserir tantas vezes da quantidade
+////////// e ele tá cadastrando o isnb como o nome, ele cadastra 2 vezes o nome, uma como ele certo e uma como o outro coiso
         public function inserir(){
                 try{
-                        //Comando SQL para inserir um livro
+                        for($i = 0; $i < $this->quantidade;){
+                        //Comando SQL para inserir um livro1
                         $query="INSERT INTO Livro 
                                 VALUES 
                                 (:isbn, :nome, :volume, :autor, :codBarras, :status, :condicao, :grande_area)";
 
                         $this->stmt= $this->conn->prepare($query);
 
+                        $query = "SELECT max(codBarras) FROM Livro ";
+                        $a =  substr ($this->grande_area,0 ,3);$a=strtoupper($a); 
+                        $v = substr ( $query, 3,4);
+                        $v++;
+                        
+                        $codBarras1 = $a . $this->volume .  $v;
+
                         $this->stmt->bindValue(':isbn', $this->isbn, PDO::PARAM_STR);
                         $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
                         $this->stmt->bindValue(':volume', $this->volume, PDO::PARAM_INT);
                         $this->stmt->bindValue(':autor', $this->autor, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':codBarras', $this->codBarras, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':codBarras', $codBarras1, PDO::PARAM_STR);
                         $this->stmt->bindValue(':status', $this->status, PDO::PARAM_STR);
                         $this->stmt->bindValue(':condicao', $this->condicao, PDO::PARAM_STR);
                         $this->stmt->bindValue(':grande_area', $this->grande_area, PDO::PARAM_STR);
 
+
                         if($this->stmt->execute()){
                                 return true;
                         }        
-                } catch(PDOException $e) {
+                 }} catch(PDOException $e) {
                         echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";      
                         return false;
                 }
-        }
+                }
+        
 
         public function alterar(){
                 try{
@@ -221,6 +251,7 @@ class Livro implements IBaseModelo{
 
         }
 
+        
         public function printTodos($livros)
         {
                 if(!empty($livros)){
@@ -231,7 +262,8 @@ class Livro implements IBaseModelo{
                                         <td>".$liv->getVolume()."</td>
                                         <td>".$liv->getAutor()."</td>
                                         <td>".$liv->getGrande_area()."</td>
-                                        <td>".$liv->getGrande_area()."</td>
+                                        <td>".$liv->getStatus()."</td>
+                                        <td>".$liv->getCondicao()."</td>
                                         " ;  
                                 echo '
                               <td>
