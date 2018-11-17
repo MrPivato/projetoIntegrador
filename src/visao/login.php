@@ -30,10 +30,10 @@ if (isset($_COOKIE["logado"])) {
                     
                     <form action="seguranca.php" method="post" class="form-horizontal">
                         <div class="form-group">
-                            <input id="usuario" name="usuario" type="text" placeholder="informe seu login" class="form-control" required="">
+                            <input id="usuario" name="usuario" type="text" placeholder="informe seu login" class="form-control" >
                         </div>
                         <div class="form-group">
-                            <input id="senha" name="senha" placeholder="Senha" type="password" class="form-control" required="">
+                            <input id="senha" name="senha" placeholder="Senha" type="password" class="form-control">
                         </div>
                         <button id="login" name="login" class="btn btn-primary">Logar</button>
                         <br>
