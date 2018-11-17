@@ -1,58 +1,98 @@
 <?php
 
-class Estudante implements IBaseModelo{
+class Emprestimo implements IBaseModelo{
 
         // vars -------------------------------------
-        private $matricula;
-        private $nome;
-        private $curso;
-        private $email;
-        private $status;
+        private $matriculaEstudante;
+        private $codBarrasLivro;
+        private $verificacaoEntrega;
+        private $id;
+        private $dataDevolucao;
+        private $periodoEntrega;
+        private $statusEntrega;
+        private $condicaoEntrega;
+        private $condicaoDevolucao;
+        private $dataDeEntrega;
 
         private $conn;
         private $stmt;
         // ------------------------------------------
         // gets -------------------------------------
-        public function getMatricula() {
-                return $this->matricula;
+        public function getmatriculaEstudante() {
+                return $this->matriculaEstudante;
         }
 
-        public function getNome() {
-                return $this->nome;
+        public function getcodBarrasLivro() {
+                return $this->codBarrasLivro;
         }
 
-        public function getCurso() {
-                return $this->curso;
+        public function getverificacaoEntrega() {
+                return $this->verificacaoEntrega;
         }
 
-        public function getEmail() {
-                return $this->email;
+        public function getid() {
+                return $this->id;
         }
 
-        public function getStatus() {
-                return $this->status;
+        public function getdataDevolucao() {
+                return $this->dataDevolucao;
         }
+		
+		 public function getperiodoEntrega() {
+                return $this->periodoEntrega;
+        }
+		 public function getstatusEntrega() {
+                return $this->statusEntrega;
+        }
+		 public function getcondicaoEntrega() {
+                return $this->condicaoEntrega;
+        }
+		 public function getcondicaoDevolucao() {
+                return $this->condicaoDevolucao;
+        }
+		 public function getdataDeEntrega() {
+                return $this->dataDevolucao;
+        }
+		
         // ------------------------------------------
         // sets -------------------------------------
-        public function setMatricula($matricula) {
-                $this->matricula = $matricula;
+
+		public function setmatriculaEstudante($matriculaEstudante) {
+                 $this->matriculaEstudante = $matriculaEstudante;
+        }
+		public function setcodBarrasLivro($codBarrasLivro) {
+                $this->codBarrasLivro = $codBarrasLivro;
         }
 
-        public function setNome($nome) {
-                $this->nome = $nome;
+        public function verificacaoEntrega($verificacaoEntrega) {
+                return $this->verificacaoEntrega = $verificacaoEntrega;
         }
 
-        public function setCurso($curso) {
-                $this->curso = $curso;
+        public function setid($id) {
+                 $this->id = $id;
         }
 
-        public function setEmail($email) {
-                $this->email = $email;
+        public function setdataDevolucao($dataDevolucao) {
+                 $this->dataDevolucao = $dataDevolucao;
         }
-
-        public function setStatus($status) {
-                $this->status = $status;
+		
+		 public function setperiodoEntrega($periodoEntrega) {
+                 $this->periodoEntrega = $periodoEntrega;
         }
+		 public function setstatusEntrega($statusEntrega) {
+                 $this->statusEntrega = $statusEntrega;
+        }
+		 public function setcondicaoEntrega($condicaoEntrega) {
+                 $this->condicaoEntrega = $condicaoEntrega;
+        }
+		 public function setcondicaoDevolucao($condicaoDevolucao) {
+                 $this->condicaoDevolucao = $condicaoDevolucao;
+        }
+		 public function setdataDeEntrega($dataDevolucao) {
+                 $this->dataDevolucao = $dataDevolucao;
+        }
+		
+		
         // ------------------------------------------
         public function __construct() {
                 //Cria conexão com o banco
@@ -68,16 +108,20 @@ class Estudante implements IBaseModelo{
         public function inserir(){
                 try{
                         //Comando SQL para inserir um estudante
-                        $query="INSERT INTO Estudante 
-                                VALUES (:matricula, :nome, :curso, :email, :status) ";
+                        $query="INSERT INTO Emprestimo 
+                                VALUES (:matriculaEstudante, :codBarrasLivro, :verificacaoEntrega, :id, :dataDevolucao :periodoEntrega, :statusEntrega, :condicaoDevolucao, :dataDevolucao) ";
 
                         $this->stmt= $this->conn->prepare($query);
 
-                        $this->stmt->bindValue(':matricula', $this->matricula, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':curso', $this->curso, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':status', $this->status, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':matriculaEstudante', $this->matriculaEstudante, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':codBarrasLivro', $this->codBarrasLivro, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':verificacaoEntrega', $this->verificacaoEntrega, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':id', $this->id, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':dataDevolucao', $this->dataDevolucao, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':periodoEntrega', $this->periodoEntrega, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':statusEntrega', $this->statusEntrega, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':condicaoDevolucao', $this->condicaoDevolucao, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':dataDevolucao', $this->dataDevolucao, PDO::PARAM_STR);
 
                         if($this->stmt->execute()){
                                 return true;
@@ -91,13 +135,19 @@ class Estudante implements IBaseModelo{
         public function alterar(){
                 try{
 
-                        //Comando SQL para inserir um estudante
-                        $query="UPDATE Estudante 
-                                SET nome = :nome, 
-                                curso = :curso, 
-                                email = :email, 
-                                status = :status 
-                                WHERE matricula=:matricula ";
+                        //Comando SQL para dar update em um Emprestimo
+                        $query="UPDATE Emprestimo 
+                                SET matriculaEstudante = :matriculaEstudante, 
+                                codBarrasLivro = :codBarrasLivro, 
+                                verificacaoEntrega = :verificacaoEntrega, 
+                                id = :id, 
+                                dataDevolucao = :dataDevolucao, 
+                                periodoEntrega = :periodoEntrega, 
+                                statusEntrega = :statusEntrega, 
+                                condicaoDevolucao = :condicaoDevolucao, 
+                                dataDevolucao = :dataDevolucao
+								
+                                WHERE id=:id ";
                         $this->stmt= $this->conn->prepare($query);
 
                         $this->stmt->bindValue(':matricula', $this->nome, PDO::PARAM_STR);
