@@ -15,7 +15,7 @@ if (empty($usuario) || empty($senha))
 }
 
 
-$conexao = new mysqli("localhost", "root","", "projetointegrador");
+$conexao = new mysqli("localhost", "root","", "projetoIntegrador");
 if ($conexao->connect_error) {
     die("Erro na conexão: ".$conexao->connect_error);
 }

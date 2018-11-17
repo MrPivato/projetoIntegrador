@@ -1,4 +1,18 @@
 ﻿<?php
+//Include das classes via autoload
+include_once '../autoload.php';
+//Cria o Controle desta View e instaância o Livro
+$livroControle = new ControleLivro();
+$list = new Livro;
+
+$livros = array();
+$livros = $livroControle->controleAcao("listarTodos");
+// Vamos fazer um include só com o form, que passa informaçoes para
+// outra página, e está faz as alterações
+// daí redireciona pra esta aqui
+?>
+
+<?php
      include_once 'inc/header.inc.php'
      ?>
 
@@ -30,7 +44,6 @@
                     <th>Autor</th>
                     <th>Quantidade em estoque</th>
                     <th>Grande Área</th>
-
                     <th>Açao</th>
                 </tr>
             </thead>
@@ -97,6 +110,9 @@
                     </td>
                 </tr>
 
+<?php 
+$list->printTodos($livros);
+?>
 
             </tbody>
         </table>
