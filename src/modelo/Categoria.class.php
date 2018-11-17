@@ -5,6 +5,7 @@ class Categoria implements IBaseModelo{
         // vars -------------------------------------
         private $categoria;
 
+
         private $conn;
         private $stmt;
 
@@ -12,12 +13,19 @@ class Categoria implements IBaseModelo{
         // gets -------------------------------------
         public function getCategoria() {
                 return $this->categoria;
-        }        
+        }
+
+
+
+
         // ------------------------------------------
         // sets -------------------------------------
         public function setCategoria($categoria) {
                 $this->categoria = $categoria;
         }
+
+
+        
         // ------------------------------------------
         public function __construct() {
                 //Cria conexão com o banco
@@ -32,13 +40,17 @@ class Categoria implements IBaseModelo{
 
         public function inserir(){
                 try{
-                        //Comando SQL para inserir um estudante
-                        $query="INSERT INTO Categoria 
-                                VALUES (:categoria) ";
+                        //Comando SQL para inserir uma categoria
+
+                         $query="INSERT INTO Categoria  
+                         VALUES (:categoria) ";
+                        
 
                         $this->stmt= $this->conn->prepare($query);
 
+
                         $this->stmt->bindValue(':categoria', $this->categoria, PDO::PARAM_STR);
+                   
 
 
                         if($this->stmt->execute()){
@@ -53,9 +65,10 @@ class Categoria implements IBaseModelo{
         public function alterar(){
                 try{
 
-                        //Comando SQL para inserir um estudante
-                        $query="UPDATE Categoria 
+                        //Comando SQL para alterar uma categoria
+                        $query="UPDATE Categoria
                                 SET categoria = :categoria
+                               
 
                                 WHERE categoria=:categoria ";
                         $this->stmt= $this->conn->prepare($query);
@@ -76,7 +89,7 @@ class Categoria implements IBaseModelo{
 
         public function excluir(){
                 try{
-                        //Comando SQL para inserir um estudante
+                        //Comando SQL para excluir uma categoria
                         $query="DELETE FROM Categoria 
                                 WHERE categoria=:categoria ";
                         $this->stmt= $this->conn->prepare($query);
@@ -143,12 +156,21 @@ class Categoria implements IBaseModelo{
 
         }
 
+        public function printCategorias($categoria)
+        {
+                if(!empty($categoria)){
+                        foreach ($categoria as $est) {
+                                echo "<option>".$est->getCategoria()."</option>";
+                        }
+                }
+        }
         public function printTodos($categoria)
         {
                 if(!empty($categoria)){
                         foreach ($categoria as $est) {
                                 echo "<tr>
                                         <td>".$est->getCategoria()."</td>
+                                       
                                         
                                         " ;  
                                 echo '
