@@ -1,5 +1,5 @@
 <?php
-
+//
 class Curso implements IBaseModelo{
 
         // vars -------------------------------------
