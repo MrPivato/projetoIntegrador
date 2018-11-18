@@ -192,8 +192,8 @@ class Funcionario implements IBaseModelo{
                                 echo "<tr>
                                         <td>".$est->getId()."</td>
                                         <td>".$est->getNome()."</td>
-                                        <td>".$est->getEmail()."</td>
                                         <td>".$est->getSenha()."</td>
+                                        <td>".$est->getEmail()."</td>
                                         <td>".$est->getStatus()."</td>
                                         " ;  
                                 echo '
