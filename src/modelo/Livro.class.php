@@ -116,10 +116,10 @@ class Livro implements IBaseModelo{
                         $this->stmt= $this->conn->prepare($query);
                         $this->stmt->execute();
                         $livros = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Livro");  
-                        echo "<pre>";
-                        var_dump($livros);
-                        echo "</pre>";
-                        echo end($livros);
+                        //echo "<pre>";
+                        //var_dump($livros);
+                        //echo "</pre>";
+                        //echo end($livros);
 
                         for($i = 0; $i < $this->quantidade; $i++){
                                 $query="INSERT INTO Livro 
@@ -267,8 +267,8 @@ class Livro implements IBaseModelo{
                         foreach ($livros as $liv) {
                                 echo "<tr>
                                         <td>".$liv->getIsbn()."</td>
-                                        <td>".$liv->getNome().
-                                        "<hr>".$liv->getCodBarras()."</td>
+                                       
+                                        <td>".$liv->getCodBarras()."</td>
                                         <td>".$liv->getNome()."</td>
                                         <td>".$liv->getVolume()."</td>
                                         <td>".$liv->getAutor()."</td>
