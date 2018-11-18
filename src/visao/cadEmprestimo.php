@@ -79,13 +79,13 @@
                   <input id="nome" name="nome" type="text" placeholder="Informe o nome do estudante" class="form-control" required="">
                </div>
 			     <div class="form-group">
-                  <label for="matricula">Informe a matricula do estudante(opcional)</label>
-                  <input id="matricula" name="matricula" type="number" placeholder="Informe a matricula" class="form-control">
+                  <label for="matricula">Informe a matrícula do estudante(opcional)</label>
+                  <input id="matricula" name="matricula" type="number" placeholder="Informe a matrícula do estudante" class="form-control">
                </div>
                <div class="form-group">
                   <label for="curso">Escolha o Curso</label>
                   <select id="curso" name="curso" class="form-control" >
-				  <option selected disabled selected>Escolha a o Curso</option>
+				  <option selected disabled selected>Escolha o Curso</option>
 				<?php
 					$cursoControle = new ControleCurso();
 					$listCursos = new Curso;
