@@ -86,6 +86,10 @@
                         <p class="dropdown-item" >Cursos</p>
                         <a class="dropdown-item" href="cadCurso.php">Cadastrar</a>
                         <a class="dropdown-item" href="listCurso.php">Listar</a>
+                        <div class="dropdown-divider"></div>
+                        <p class="dropdown-item" >Funcionários</p>
+                        <a class="dropdown-item" href="cadFuncionario.php">Cadastrar</a>
+                        <a class="dropdown-item" href="listFuncionario.php">Listar</a>
                     </div>
                 </li>
 				<ul class="navbar-nav ml-auto">
