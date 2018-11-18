@@ -7,7 +7,8 @@
         }
     }
     if (!isset($_SESSION["usuario"])) {
-        header("Location:login.php");
+<<<<<<< HEAD
+        header("Location:../visao/login.php");
         exit;
     }
     $usuario = $_SESSION['usuario'];
