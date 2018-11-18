@@ -1,5 +1,5 @@
 <?php 
-	include_once 'inc/redirecionamento.inc.php';
+include_once 'inc/redirecionamento.inc.php';
 ?>
 <?php
 //Include das classes via autoload
@@ -12,13 +12,15 @@ if($_POST){
         //Passa o POST desta View para o Controle
         $estudanteControle->setVisao($_POST);
         //Verifica qual ação (inserir ou alterar) vai passar para o Controle
-        if(empty($_GET["matricula"])){
+        if(empty($_POST["id"])){
                 $retorno = $estudanteControle->controleAcao("inserir");
                 if($retorno) {$msg="Estudante inserido com sucesso!";}
                 else{$erro="Houve um erro na inserção do estudante!";}
         }else{
                 $retorno = $estudanteControle->controleAcao("alterar");
-                if($retorno) {$msg="Estudante alterado com sucesso!";}
+                if($retorno) {
+                        $msg="Estudante alterado com sucesso!";
+                }
                 else{$erro="Houve um erro na alteração do estudante!";}
         }
 
@@ -85,7 +87,7 @@ if(isset($erro)){
         $msg=null;
 }                
 ?>             
-      <form action="<?php isset($estudanteAlteracao) ? print('cadAluno.php?matricula='.$estudanteAlteracao->getMatricula().'&op=alt') : 'cadAluno.php';?>" method="POST" name="cad_livro">
+      <form action="cadAluno.php" method="POST" name="cad_livro">
       <div class="container">
          <br clear="all">
          <div class="main-div">
@@ -118,6 +120,7 @@ if(isset($erro)){
                      <option>Matriculado</option>
                      <option>Desmatriculado</option>
                   </select>
+                <input type="hidden" name="id" value="<?php isset($estudanteAlteracao) ? print($estudanteAlteracao->getMatricula()) : '';?>">
                </div>
                <button  id="login" name="login" class="btn btn-primary">Confirmar</button>
                <button id="reset" name="cancelar" type="reset" class="botao-rst" class="btn btn-primary">Cancelar</button>
