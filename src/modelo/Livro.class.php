@@ -108,13 +108,10 @@ class Livro implements IBaseModelo{
                 Database::desconectar();
         }
         // ------------------------------------------
-
-/////////// em último caso eu acho melhor deixar ele gerando aleatório o código
-/////////// arrumar  a parte de gerar o código de barras e a parte do loop de inserir tantas vezes da quantidade
-////////// e ele tá cadastrando o isnb como o nome, ele cadastra 2 vezes o nome, uma como ele certo e uma como o outro coiso
-        public function inserir(){
+    public function inserir(){
                 try{
-                        for($i = 0; $i < $this->quantidade;){
+                        
+                        for($i = 0; $i < $this->quantidade; $i++){
                         //Comando SQL para inserir um livro1
                         $query="INSERT INTO Livro 
                                 VALUES 
@@ -122,10 +119,10 @@ class Livro implements IBaseModelo{
 
                         $this->stmt= $this->conn->prepare($query);
 
-                        $query = "SELECT max(codBarras) FROM Livro ";
+                       
                         $a =  substr ($this->grande_area,0 ,3);$a=strtoupper($a); 
-                        $v = substr ( $query, 3,4);
-                        $v++;
+                        $v = rand(100,999);
+                        
                         
                         $codBarras1 = $a . $this->volume .  $v;
 
@@ -139,14 +136,16 @@ class Livro implements IBaseModelo{
                         $this->stmt->bindValue(':grande_area', $this->grande_area, PDO::PARAM_STR);
 
 
-                        if($this->stmt->execute()){
-                                return true;
-                        }        
-                 }} catch(PDOException $e) {
-                        echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";      
-                        return false;
+                       
                 }
-                }
+                if($this->stmt->execute()){
+                        return true;
+                }        
+        } catch(PDOException $e) {
+                echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";      
+                return false;
+        }
+}
         
 
         public function alterar(){
@@ -260,6 +259,8 @@ class Livro implements IBaseModelo{
                                         <td>".$liv->getIsbn()."</td>
                                         <td>".$liv->getNome().
                                         "<hr>".$liv->getCodBarras()."</td>
+                                        <td>".$liv->getCodBarras()."</td>
+                                        <td>".$liv->getNome()."</td>
                                         <td>".$liv->getVolume()."</td>
                                         <td>".$liv->getAutor()."</td>
                                         <td>".$liv->getGrande_area()."</td>
