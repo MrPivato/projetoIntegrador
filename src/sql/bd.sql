@@ -2,12 +2,13 @@ CREATE DATABASE projetoIntegrador;
 USE projetoIntegrador;
 
 CREATE TABLE Funcionario (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY auto_increment,
         nome VARCHAR(100),
         email VARCHAR(100),
         senha VARCHAR(100),
         status VARCHAR(50)
 );
+
 
 CREATE TABLE Categoria (
         categoria VARCHAR(100) PRIMARY KEY
