@@ -31,7 +31,6 @@ class ControleEmprestimo extends ControleBase {
 
         private function preencheModelo(){
                 // Passa dados do formulário para a classe Emprestimo
-                $this->emprestimo->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
                 $this->emprestimo->setMatriculaEstudante((isset($this->visao["matriculaEstudante"]) && $this->visao["matriculaEstudante"] != null) ? $this->visao["matriculaEstudante"] : "");
                 $this->emprestimo->setCodBarrasLivro((isset($this->visao["codBarrasLivro"]) && $this->visao["codBarrasLivro"] != null) ? $this->visao["codBarrasLivro"] : "");
                 $this->emprestimo->setVerificacaoEntrega((isset($this->visao["verificacaoEntrega"]) && $this->visao["verificacaoEntrega"] != null) ? $this->visao["verificacaoEntrega"] : "");
@@ -59,7 +58,7 @@ class ControleEmprestimo extends ControleBase {
 
         protected function excluir(){
                 // Passa dados do formulário (via GET) para a classe Emprestimo
-                $this->emprestimo->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
+                $this->emprestimo->setCodBarrasLivro((isset($this->visao["codBarrasLivro"]) && $this->visao["codBarrasLivro"] != null) ? $this->visao["codBarrasLivro"] : "");
                 //Chama o método para excluir os dados no banco de dados
                 return $this->emprestimo->excluir();
         }

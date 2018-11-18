@@ -258,7 +258,8 @@ class Livro implements IBaseModelo{
                         foreach ($livros as $liv) {
                                 echo "<tr>
                                         <td>".$liv->getIsbn()."</td>
-                                        <td>".$liv->getNome()."</td>
+                                        <td>".$liv->getNome().
+                                        "<hr>".$liv->getCodBarras()."</td>
                                         <td>".$liv->getVolume()."</td>
                                         <td>".$liv->getAutor()."</td>
                                         <td>".$liv->getGrande_area()."</td>

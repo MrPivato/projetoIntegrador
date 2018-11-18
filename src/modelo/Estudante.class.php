@@ -94,6 +94,7 @@ class Estudante implements IBaseModelo{
                         //Comando SQL para inserir um estudante
                         $query="UPDATE Estudante 
                                 SET nome = :nome, 
+                                matricula = :matricula,
                                 curso = :curso, 
                                 email = :email, 
                                 status = :status 
@@ -213,7 +214,7 @@ class Estudante implements IBaseModelo{
                                         <p class=\'text-dark\'>Deseja realmente excluir?</p>
                                      </div>
                                      <div class=\'modal-footer\'>
-                                        <a href=\'listcrianca.php?id={$registro[\' id \']}\' type=\'button\' class=\'btn btn-success\' id=\'delete\'>Confirmar</a>
+                                        <a href="../visao/cadAluno.php?matricula='.$est->getMatricula().'&op=exc" class=\'btn btn-success\' id=\'delete\'>Confirmar</a>
                                         <button type=\'button\' data-dismiss=\'modal\' class=\'btn btn-danger\'>Cancelar</button>
                                      </div>
                                   </div>
