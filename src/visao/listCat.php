@@ -1,3 +1,12 @@
+
+<?php 
+	include_once 'inc/redirecionamento.inc.php';
+?>
+
+
+
+
+
 <?php
 //Include das classes via autoload
 include_once '../autoload.php';

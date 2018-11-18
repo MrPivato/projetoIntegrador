@@ -1,4 +1,13 @@
-﻿<?php
+
+<?php 
+	include_once 'inc/redirecionamento.inc.php';
+?>
+
+
+
+
+
+<?php
     include_once 'inc/header.inc.php'
     ?>
 <body>

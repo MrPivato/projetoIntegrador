@@ -1,3 +1,10 @@
+
+<?php 
+	include_once 'inc/redirecionamento.inc.php';
+?>
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
