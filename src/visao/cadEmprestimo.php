@@ -1,6 +1,4 @@
-
-
-<!-- REDIRECIONAR SE NAO TIVER LOGADO , TEM C COLOCAR A TAG PHP(pq se nao nao da p comentar) < ?php <----
+<?php
     session_start();
     if (isset($_COOKIE["logado"])) {
         if ($_COOKIE["logado"] == 'on') {
@@ -14,7 +12,6 @@
     $usuario = $_SESSION['usuario'];
 	
 ?>
--->
 
 
 <!DOCTYPE html>
