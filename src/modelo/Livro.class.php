@@ -259,7 +259,6 @@ class Livro implements IBaseModelo{
                                         <td>".$liv->getIsbn()."</td>
                                         <td>".$liv->getNome().
                                         "<hr>".$liv->getCodBarras()."</td>
-                                        <td>".$liv->getCodBarras()."</td>
                                         <td>".$liv->getNome()."</td>
                                         <td>".$liv->getVolume()."</td>
                                         <td>".$liv->getAutor()."</td>
