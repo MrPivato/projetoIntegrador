@@ -23,7 +23,7 @@ $curso = $cursoControle->controleAcao("listarTodos");
      include_once 'inc/header.inc.php'
      ?>
 
-<body>
+<body id="cadLivroForm">
     <br clear="all">
     <div class="container">
         <h2>Pesquisar</h2>

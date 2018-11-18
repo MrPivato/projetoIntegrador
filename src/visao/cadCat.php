@@ -15,27 +15,27 @@ include_once '../autoload.php';
 //Caso tenha sido feito um POST da página
 if($_POST){
     //Cria o Controle desta View (página)
-    $cursoControle = new ControleCurso();
+    $categoriaControle = new ControleCategoria();
 
     //Passa o POST desta View para o Controle
-    $cursoControle->setVisao($_POST);
+    $categoriaControle->setVisao($_POST);
     //Verifica qual ação (inserir ou alterar) vai passar para o Controle
     if(empty($_POST["id"])){
-        $retorno = $cursoControle->controleAcao("inserir");
+        $retorno = $categoriaControle->controleAcao("inserir");
         if($retorno) {$msg="Curso inserido com sucesso!";}
-        else{$erro="Houve um erro na inserção do curso!";}
+        else{$erro="Houve um erro na inserção do categoria!";}
     }else{
-        $retorno = $cursoControle->controleAcao("alterar");
+        $retorno = $categoriaControle->controleAcao("alterar");
         if($retorno) {$msg="Curso alterado com sucesso!";}
-        else{$erro="Houve um erro na alteração do curso!";}
+        else{$erro="Houve um erro na alteração do categoria!";}
     }
    
 }elseif($_GET){ // Caso os dados sejam enviados via GET
    
     //Cria o Controle desta View (página)
-    $cursoControle = new ControleCurso();
+    $categoriaControle = new ControleCategoria();
     //Passa o GET desta View para o Controle
-    $cursoControle->setVisao($_GET);
+    $categoriaControle->setVisao($_GET);
             
     //Verifico qual operação será realizada
     if(isset($_GET["op"])){
@@ -46,22 +46,22 @@ if($_POST){
             //Verifica qual ação (excluir ou listar para alteração) vai passar para o Controle
             if($_GET["op"] == "exc"){
                 // excluir o curso do banco de dados
-                $retorno=$cursoControle->controleAcao("excluir");
+                $retorno=$categoriaControle->controleAcao("excluir");
                 if($retorno) {$msg="Curso excluído com sucesso!";}
-                else{$erro="Houve um erro na exclusão do curso!";}
+                else{$erro="Houve um erro na exclusão do categoria!";}
             }elseif ($_GET["op"] == "alt") {
-                // O $cursoAlteracao será utilizado no formulário para preencher os dados do curso 
+                // O $categoriaAlteracao será utilizado no formulário para preencher os dados do curso 
                 // que foram pesquisados no banco de dados
-                $cursoAlteracao = $cursoControle->controleAcao("listarUnico",$_GET["id"]);
+                $categoriaAlteracao = $categoriaControle->controleAcao("listarUnico",$_GET["categoria"]);
                 
             }
         }    
 
     }  if(isset($_GET["pesquisa"])){
         
-        // O $curso será utilizado para preencher a tabela com os cursos cadastrados  
-        $curso = array();
-        $curso = $cursoControle->controleAcao("listarTodos",$_GET["pesquisa"]);
+        // O $curso será utilizado para preencher a tabela com os catcategoria cadastrados  
+        $categoria = array();
+        $categoria = $categoriaControle->controleAcao("listarTodos",$_GET["pesquisa"]);
         
     }  
 }
@@ -92,17 +92,17 @@ if($_POST){
                ?>  
 
 
-	<form action="cadCurso.php" method="POST" name="cad_livro">
+	<form action="cadCat.php" method="POST" name="cad_livro">
         <div class="container">
 		<br clear="all">
             <div class="main-div">
             <div class="cadLivro-form">
             <div class="form-group">
-				<h2>Cadastro de Cursos</h2>
+				<h2>Cadastro de Categorias</h2>
 
 			<div class="form-group">
-				<label for="nome">Informe o curso</label>
-                <input id="curso" name="curso" type="text" placeholder="Informe o curso" class="form-control" required="">
+				<label for="nome">Informe a categoria</label>
+                <input id="categoria" name="categoria" type="text" placeholder="Informe a categoria" class="form-control" required="">
             </div>
 
            

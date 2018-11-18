@@ -23,7 +23,7 @@ $livros = $livroControle->controleAcao("listarTodos");
      include_once 'inc/header.inc.php'
      ?>
 
-<body>
+<body id="cadLivroForm">
     <br clear="all">
     <div class="container">
         <h2>Pesquisar</h2>
@@ -34,8 +34,9 @@ $livros = $livroControle->controleAcao("listarTodos");
         <input type="radio" name="filtro" value="2"> Nome
         <input type="radio" name="filtro" value="3"> Volume
         <input type="radio" name="filtro" value="4"> Autor
-        <input type="radio" name="filtro" value="5"> Quantidade em estoque
-        <input type="radio" name="filtro" value="6"> Grande Área
+        <input type="radio" name="filtro" value="5"> Grande Área
+        <input type="radio" name="filtro" value="6"> Status
+        <input type="radio" name="filtro" value="7"> Condição
 
         <br clear="all">
         <br clear="all">
