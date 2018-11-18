@@ -30,11 +30,12 @@ $livros = $livroControle->controleAcao("listarTodos");
         <p>Selecione o filtro:</p>
 
         <input type="radio" name="filtro" value="0"> ISBN
-        <input type="radio" name="filtro" value="1"> Nome
-        <input type="radio" name="filtro" value="2"> Volume
-        <input type="radio" name="filtro" value="3"> Autor
-        <input type="radio" name="filtro" value="4"> Quantidade em estoque
-        <input type="radio" name="filtro" value="5"> Grande Área
+        <input type="radio" name="filtro" value="1"> Código
+        <input type="radio" name="filtro" value="2"> Nome
+        <input type="radio" name="filtro" value="3"> Volume
+        <input type="radio" name="filtro" value="4"> Autor
+        <input type="radio" name="filtro" value="5"> Quantidade em estoque
+        <input type="radio" name="filtro" value="6"> Grande Área
 
         <br clear="all">
         <br clear="all">
@@ -46,6 +47,7 @@ $livros = $livroControle->controleAcao("listarTodos");
             <thead class="headTable">
                 <tr>
                     <th>ISBN</th>
+                    <th>Código</th>
                     <th>Nome</th>
                     <th>Volume</th>
                     <th>Autor</th>
