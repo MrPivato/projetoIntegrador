@@ -41,13 +41,8 @@ if($_POST){
                         if($_GET["op"] == "exc"){
                                 // excluir o estudante do banco de dados
                                 $retorno=$estudanteControle->controleAcao("excluir");
-                                if($retorno) {
-                                        $msg="Estudante excluído com sucesso!";
-                                        header("Location:../visao/listAluno.php");
-                                }
-                                else{
-                                        $erro="Houve um erro na exclusão do estudante!";
-                                }
+                                if($retorno) {$msg="Estudante excluído com sucesso!";}
+                                else{$erro="Houve um erro na exclusão do estudante!";}
                         }elseif ($_GET["op"] == "alt") {
                                 // O $estudanteAlteracao será utilizado no formulário para preencher os dados do estudante 
                                 // que foram pesquisados no banco de dados

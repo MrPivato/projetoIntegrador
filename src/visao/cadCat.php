@@ -22,11 +22,11 @@ if($_POST){
     //Verifica qual ação (inserir ou alterar) vai passar para o Controle
     if(empty($_POST["id"])){
         $retorno = $categoriaControle->controleAcao("inserir");
-        if($retorno) {$msg="Curso inserido com sucesso!";}
+        if($retorno) {$msg="Categoria inserido com sucesso!";}
         else{$erro="Houve um erro na inserção do categoria!";}
     }else{
         $retorno = $categoriaControle->controleAcao("alterar");
-        if($retorno) {$msg="Curso alterado com sucesso!";}
+        if($retorno) {$msg="Categoria alterado com sucesso!";}
         else{$erro="Houve um erro na alteração do categoria!";}
     }
    
@@ -41,16 +41,16 @@ if($_POST){
     if(isset($_GET["op"])){
         
         //Verifico a existência dos campos obrigatórios
-        if (isset($_GET["curso"])) {
+        if (isset($_GET["categoria"])) {
             
             //Verifica qual ação (excluir ou listar para alteração) vai passar para o Controle
             if($_GET["op"] == "exc"){
-                // excluir o curso do banco de dados
+                // excluir o categoria do banco de dados
                 $retorno=$categoriaControle->controleAcao("excluir");
-                if($retorno) {$msg="Curso excluído com sucesso!";}
+                if($retorno) {$msg="Categoria excluído com sucesso!";}
                 else{$erro="Houve um erro na exclusão do categoria!";}
             }elseif ($_GET["op"] == "alt") {
-                // O $categoriaAlteracao será utilizado no formulário para preencher os dados do curso 
+                // O $categoriaAlteracao será utilizado no formulário para preencher os dados do categoria 
                 // que foram pesquisados no banco de dados
                 $categoriaAlteracao = $categoriaControle->controleAcao("listarUnico",$_GET["categoria"]);
                 
@@ -59,7 +59,7 @@ if($_POST){
 
     }  if(isset($_GET["pesquisa"])){
         
-        // O $curso será utilizado para preencher a tabela com os catcategoria cadastrados  
+        // O $categoria será utilizado para preencher a tabela com os catcategoria cadastrados  
         $categoria = array();
         $categoria = $categoriaControle->controleAcao("listarTodos",$_GET["pesquisa"]);
         
@@ -106,7 +106,8 @@ if($_POST){
             </div>
 
            
-			
+           <input type="hidden" name="id" value="<?php isset($categoriaAlteracao) ? print($categoriaAlteracao->getCategoria()) : '';?>">
+               
                 <button id="login" name="login" class="btn btn-primary">Confirmar</button>
                         
                 <button id="reset" name="cancelar" type="reset" class="botao-rst" class="btn btn-primary">Cancelar</button>

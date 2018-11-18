@@ -56,7 +56,7 @@ if($_POST){
             }elseif ($_GET["op"] == "alt") {
                 // O $cursoAlteracao será utilizado no formulário para preencher os dados do curso 
                 // que foram pesquisados no banco de dados
-                $cursoAlteracao = $cursoControle->controleAcao("listarUnico",$_GET["id"]);
+                $cursoAlteracao = $cursoControle->controleAcao("listarUnico",$_GET["curso"]);
                 
             }
         }    
