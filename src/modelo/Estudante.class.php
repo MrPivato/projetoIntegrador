@@ -198,7 +198,7 @@ class Estudante implements IBaseModelo{
                                 echo '
                               <td>
                             <!-- Alterar -->
-                            <a href="../visao/cadAluno.php?matricula='.$est->getMatricula().'"><button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#exampleModalCenter">
+                            <a href="../visao/cadAluno.php?matricula='.$est->getMatricula().'&op=alt"><button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fas fa-edit"></i>
                             </button></a>
                             <!-- Deletar -->

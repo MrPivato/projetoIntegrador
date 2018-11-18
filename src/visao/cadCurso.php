@@ -19,7 +19,7 @@ if($_POST){
     //Verifica qual ação (inserir ou alterar) vai passar para o Controle
     if(empty($_POST["id"])){
         $retorno = $cursoControle->controleAcao("inserir");
-        if($retorno) {$msg="Curso inserida com sucesso!";}
+        if($retorno) {$msg="Curso inserido com sucesso!";}
         else{$erro="Houve um erro na inserção do curso!";}
     }else{
         $retorno = $cursoControle->controleAcao("alterar");
@@ -65,11 +65,18 @@ if($_POST){
 
 
 ?>
+
+
+
+
+
+
     <body id="cadLivroForm">
+        
 		<?php
 			include "inc/header.inc.php";
-		?>
-<?php 
+        ?>
+        	<?php 
                     //Imprime as mensagens
                     if(isset($msg)){ 
                         echo "<div class='alert alert-success' id='msg' name='msg'>".$msg."</div>";                             
@@ -79,7 +86,9 @@ if($_POST){
                         echo "<div class='alert alert-danger' id='msg' name='erro'>".$erro."</div>"; 
                         $msg=null;
                     }                
-               ?>             
+               ?>  
+
+
 	<form action="cadCurso.php" method="POST" name="cad_livro">
         <div class="container">
 		<br clear="all">
@@ -92,6 +101,8 @@ if($_POST){
 				<label for="nome">Informe o curso</label>
                 <input id="curso" name="curso" type="text" placeholder="Informe o curso" class="form-control" required="">
             </div>
+
+           
 			
                 <button id="login" name="login" class="btn btn-primary">Confirmar</button>
                         
