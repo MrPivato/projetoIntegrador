@@ -65,16 +65,21 @@ if($_POST){
 
 
 ?>
-
-
-
-
-
-
     <body id="cadLivroForm">
 		<?php
 			include "inc/header.inc.php";
 		?>
+<?php 
+                    //Imprime as mensagens
+                    if(isset($msg)){ 
+                        echo "<div class='alert alert-success' id='msg' name='msg'>".$msg."</div>";                             
+                        $msg=null;
+                    }
+                    if(isset($erro)){ 
+                        echo "<div class='alert alert-danger' id='msg' name='erro'>".$erro."</div>"; 
+                        $msg=null;
+                    }                
+               ?>             
 	<form action="cadCurso.php" method="POST" name="cad_livro">
         <div class="container">
 		<br clear="all">
