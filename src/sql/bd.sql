@@ -39,7 +39,7 @@ CREATE TABLE Livro (
 
 CREATE TABLE Emprestimo (
         matriculaEstudante CHAR(12),
-        verificacaoEntrega INTEGER,
+        verificacaoEntrega VARCHAR(50),
         codBarrasLivro VARCHAR(100) PRIMARY KEY,
         dataDevolucao DATE,
         periodoEntrega DATE,
