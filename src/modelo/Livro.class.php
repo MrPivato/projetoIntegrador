@@ -12,13 +12,13 @@ class Livro implements IBaseModelo{
         private $condicao;
         private $grande_area;
         private $quantidade;
-      
+
 
 
         private $conn;
         private $stmt;
 
-       
+
         // ------------------------------------------
         // gets -------------------------------------
         public function getIsbn() {
@@ -96,7 +96,7 @@ class Livro implements IBaseModelo{
         public function setQuantidade($quantidade) {
                 $this->quantidade = $quantidade;
         }
-        
+
         // ------------------------------------------
         public function __construct() {
                 //Cria conexão com o banco
@@ -108,45 +108,55 @@ class Livro implements IBaseModelo{
                 Database::desconectar();
         }
         // ------------------------------------------
-    public function inserir(){
+
+        public function inserir(){
                 try{
-                        
-                        for($i = 0; $i < $this->quantidade; $i++){
-                        //Comando SQL para inserir um livro1
-                        $query="INSERT INTO Livro 
-                                VALUES 
-                                (:isbn, :nome, :volume, :autor, :codBarras, :status, :condicao, :grande_area)";
+                        $query = "SELECT MAX(codBarras) FROM `Livro` WHERE `codBarras` LIKE '%BIO%'";
 
                         $this->stmt= $this->conn->prepare($query);
+                        $this->stmt->execute();
+                        $livros = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Livro");  
+                        echo "<pre>";
+                        var_dump($livros);
+                        echo "</pre>";
+                        echo end($livros);
 
-                       
-                        $a =  substr ($this->grande_area,0 ,3);$a=strtoupper($a); 
-                        $v = rand(100,999);
-                        
-                        
-                        $codBarras1 = $a . $this->volume .  $v;
-
-                        $this->stmt->bindValue(':isbn', $this->isbn, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':volume', $this->volume, PDO::PARAM_INT);
-                        $this->stmt->bindValue(':autor', $this->autor, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':codBarras', $codBarras1, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':status', $this->status, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':condicao', $this->condicao, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':grande_area', $this->grande_area, PDO::PARAM_STR);
+                        for($i = 0; $i < $this->quantidade; $i++){
+                                $query="INSERT INTO Livro 
+                                        VALUES 
+                                        (:isbn, :nome, :volume, :autor, :codBarras, :status, :condicao, :grande_area)";
 
 
-                       
-                }
-                if($this->stmt->execute()){
+
+                                $a =  substr ($this->grande_area,0 ,3);
+                                $a = strtoupper($a); 
+
+                                $v = rand(100,999);
+
+
+                                $codBarras1 = $a . $this->volume .  $v;
+
+                                $this->stmt= $this->conn->prepare($query);
+
+                                $this->stmt->bindValue(':isbn', $this->isbn, PDO::PARAM_STR);
+                                $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
+                                $this->stmt->bindValue(':volume', $this->volume, PDO::PARAM_INT);
+                                $this->stmt->bindValue(':autor', $this->autor, PDO::PARAM_STR);
+                                $this->stmt->bindValue(':codBarras', $codBarras1, PDO::PARAM_STR);
+                                $this->stmt->bindValue(':status', $this->status, PDO::PARAM_STR);
+                                $this->stmt->bindValue(':condicao', $this->condicao, PDO::PARAM_STR);
+                                $this->stmt->bindValue(':grande_area', $this->grande_area, PDO::PARAM_STR);
+
+
+                                $this->stmt->execute();
+                        }
                         return true;
-                }        
-        } catch(PDOException $e) {
-                echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";      
-                return false;
+                } catch(PDOException $e) {
+                        echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";      
+                        return false;
+                }
         }
-}
-        
+
 
         public function alterar(){
                 try{
@@ -250,7 +260,7 @@ class Livro implements IBaseModelo{
 
         }
 
-        
+
         public function printTodos($livros)
         {
                 if(!empty($livros)){

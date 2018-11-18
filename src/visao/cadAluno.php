@@ -6,7 +6,6 @@ include_once 'inc/redirecionamento.inc.php';
 include_once '../autoload.php';
 //Caso tenha sido feito um POST da página
 if($_POST){
-        var_dump($_POST);
         //Cria o Controle desta View (página)
         $estudanteControle = new ControleEstudante();
 
