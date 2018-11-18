@@ -39,7 +39,6 @@ CREATE TABLE Livro (
 
 CREATE TABLE Emprestimo (
         matriculaEstudante CHAR(12),
-        verificacaoEntrega VARCHAR(50),
         codBarrasLivro VARCHAR(100) PRIMARY KEY,
         dataDevolucao DATE,
         periodoEntrega DATE,
@@ -67,9 +66,4 @@ ON DELETE NO ACTION;
 ALTER TABLE Emprestimo ADD CONSTRAINT FK_Emprestimo_2
 FOREIGN KEY (codBarrasLivro)
 REFERENCES Livro (codBarras)
-ON DELETE NO ACTION;
-
-ALTER TABLE Emprestimo ADD CONSTRAINT FK_Emprestimo_3
-FOREIGN KEY (verificacaoEntrega)
-REFERENCES Funcionario (id)
 ON DELETE NO ACTION;

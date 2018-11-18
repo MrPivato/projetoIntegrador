@@ -4,7 +4,6 @@ class Emprestimo implements IBaseModelo{
 
         // vars -------------------------------------
         private $matriculaEstudante;
-        private $verificacaoEntrega;
         private $codBarrasLivro;
         private $dataDevolucao;
         private $periodoEntrega;
@@ -19,10 +18,6 @@ class Emprestimo implements IBaseModelo{
         // gets -------------------------------------
         public function getMatriculaEstudante() {
                 return $this->matriculaEstudante;
-        }
-
-        public function getVerificacaoEntrega() {
-                return $this->verificacaoEntrega;
         }
 
         public function getCodBarrasLivro() {
@@ -56,10 +51,6 @@ class Emprestimo implements IBaseModelo{
         // sets -------------------------------------
         public function setMatriculaEstudante($matriculaEstudante) {
                 $this->matriculaEstudante = $matriculaEstudante;
-        }
-
-        public function setVerificacaoEntrega($verificacaoEntrega) {
-                $this->verificacaoEntrega = $verificacaoEntrega;
         }
 
         public function setCodBarrasLivro($codBarrasLivro) {
@@ -105,11 +96,10 @@ class Emprestimo implements IBaseModelo{
                 try{
                         //Comando SQL para inserir um emprestimo
                         $query="INSERT INTO Emprestimo 
-                                VALUES (:matriculaEstudante, :verificacaoEntrega, :codBarrasLivro, :dataDevolucao, :periodoEntrega, :statusEntrega, :condicaoEntrega, :condicaoDevolucao, :statusEntrega) ";
+                                VALUES (:matriculaEstudante, :codBarrasLivro, :dataDevolucao, :periodoEntrega, :statusEntrega, :condicaoEntrega, :condicaoDevolucao, :statusEntrega) ";
 
                         $this->stmt= $this->conn->prepare($query);
 
-                        $this->stmt->bindValue(':matriculaEstudante', $this->matriculaEstudante, PDO::PARAM_STR);
                         $this->stmt->bindValue(':verificacaoEntrega', $this->verificacaoEntrega, PDO::PARAM_STR);
                         $this->stmt->bindValue(':codBarrasLivro', $this->codBarrasLivro, PDO::PARAM_STR);
                         $this->stmt->bindValue(':dataDevolucao', $this->dataDevolucao, PDO::PARAM_STR);
@@ -134,7 +124,6 @@ class Emprestimo implements IBaseModelo{
                         //Comando SQL para inserir um emprestimo
                         $query="UPDATE Emprestimo 
                                 SET matriculaEstudante = :matriculaEstudante
-                                verificacaoEntrega = :verificacaoEntrega, 
                                 dataDevolucao = :dataDevolucao, 
                                 periodoEntrega = :periodoEntrega, 
                                 statusEntrega = :statusEntrega 
@@ -145,7 +134,6 @@ class Emprestimo implements IBaseModelo{
                         $this->stmt= $this->conn->prepare($query);
 
                         $this->stmt->bindValue(':matriculaEstudante', $this->matriculaEstudante, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':verificacaoEntrega', $this->verificacaoEntrega, PDO::PARAM_STR);
                         $this->stmt->bindValue(':codBarrasLivro', $this->codBarrasLivro, PDO::PARAM_STR);
                         $this->stmt->bindValue(':dataDevolucao', $this->dataDevolucao, PDO::PARAM_STR);
                         $this->stmt->bindValue(':periodoEntrega', $this->periodoEntrega, PDO::PARAM_STR);
@@ -167,20 +155,20 @@ class Emprestimo implements IBaseModelo{
         public function excluir()
         {}
 
-        public function listarTodos($verificacaoEntrega=null){
+        public function listarTodos($matriculaEstudante=null){
 
                 try{
                         $emprestimos = array();
 
                         //Comando SQL para inserir um emprestimo
                         if(!is_null($verificacaoEntrega)){
-                                $query="SELECT matriculaEstudante, verificacaoEntrega, codBarrasLivro, dataDevolucao, periodoEntrega, statusEntrega, condicaoEntrega, condicaoDevolucao, statusEntrega FROM Emprestimo WHERE matriculaEstudante LIKE :matriculaEstudante";
+                                $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao, periodoEntrega, statusEntrega, condicaoEntrega, condicaoDevolucao, statusEntrega FROM Emprestimo WHERE matriculaEstudante LIKE :matriculaEstudante";
                         }else{
                                 // Pesquisa todos
-                                $query="SELECT matriculaEstudante, verificacaoEntrega, codBarrasLivro, dataDevolucao, periodoEntrega, statusEntrega, condicaoEntrega, condicaoDevolucao, statusEntrega FROM Emprestimo";
+                                $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao, periodoEntrega, statusEntrega, condicaoEntrega, condicaoDevolucao, statusEntrega FROM Emprestimo";
                         }
                         $this->stmt= $this->conn->prepare($query);
-                        if(!is_null($verificacaoEntrega))$this->stmt->bindValue(':verificacaoEntrega', '%'.$verificacaoEntrega.'%', PDO::PARAM_STR);
+                        if(!is_null($verificacaoEntrega))$this->stmt->bindValue(':matriculaEstudante', '%'.$matriculaEstudante.'%', PDO::PARAM_STR);
 
                         if($this->stmt->execute()){
                                 // Associa cada registro a uma classe Emprestimo
@@ -200,7 +188,7 @@ class Emprestimo implements IBaseModelo{
         public function listarUnico($matriculaEstudante){
 
                 try{
-                        $query="SELECT matriculaEstudante, verificacaoEntrega, codBarrasLivro, dataDevolucao, periodoEntrega, statusEntrega, condicaoEntrega, condicaoDevolucao, statusEntrega FROM Emprestimo WHERE matriculaEstudante=:matriculaEstudante";
+                        $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao, periodoEntrega, statusEntrega, condicaoEntrega, condicaoDevolucao, statusEntrega FROM Emprestimo WHERE matriculaEstudante=:matriculaEstudante";
                         $this->stmt= $this->conn->prepare($query);
                         $this->stmt->bindValue(':matriculaEstudante', $matriculaEstudante, PDO::PARAM_INT);
 

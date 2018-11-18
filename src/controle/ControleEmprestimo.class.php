@@ -33,7 +33,6 @@ class ControleEmprestimo extends ControleBase {
                 // Passa dados do formulário para a classe Emprestimo
                 $this->emprestimo->setMatriculaEstudante((isset($this->visao["matriculaEstudante"]) && $this->visao["matriculaEstudante"] != null) ? $this->visao["matriculaEstudante"] : "");
                 $this->emprestimo->setCodBarrasLivro((isset($this->visao["codBarrasLivro"]) && $this->visao["codBarrasLivro"] != null) ? $this->visao["codBarrasLivro"] : "");
-                $this->emprestimo->setVerificacaoEntrega((isset($this->visao["verificacaoEntrega"]) && $this->visao["verificacaoEntrega"] != null) ? $this->visao["verificacaoEntrega"] : "");
                 $this->emprestimo->setDataDevolucao((isset($this->visao["dataDevolucao"]) && $this->visao["dataDevolucao"] != null) ? $this->visao["dataDevolucao"] : "");
                 $this->emprestimo->setPeriodoEntrega((isset($this->visao["periodoEntrega"]) && $this->visao["periodoEntrega"] != null) ? $this->visao["periodoEntrega"] : "");
                 $this->emprestimo->setStatusEntrega((isset($this->visao["statusEntrega"]) && $this->visao["statusEntrega"] != null) ? $this->visao["statusEntrega"] : "");
