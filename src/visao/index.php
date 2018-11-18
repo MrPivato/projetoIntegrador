@@ -23,7 +23,7 @@
 <br/>
 <div class="container">
     <div class="row justify-content-center ">
-        <h1>Seja bem vindo!</h1>
+        <h1 style="font-family: 'Roboto', sans-serif;">Seja bem vindo!</h1>
     </div>
     <br/>
     <div class="row justify-content-center imghome">
