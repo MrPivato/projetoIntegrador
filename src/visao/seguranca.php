@@ -19,7 +19,7 @@ $conexao = new mysqli("localhost", "root","", "projetoIntegrador");
 if ($conexao->connect_error) {
     die("Erro na conexão: ".$conexao->connect_error);
 }
-$sql = "SELECT email,senha FROM funcionario Where email = '{$_POST["usuario"]}' and senha = '{$_POST["senha"]}'";
+$sql = "SELECT email,senha FROM Funcionario Where email = '{$_POST["usuario"]}' and senha = '{$_POST["senha"]}'";
 
 $resultado = $conexao->query($sql);
 $registro = $resultado->fetch_array();

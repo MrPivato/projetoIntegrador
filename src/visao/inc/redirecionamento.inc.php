@@ -1,5 +1,4 @@
 <?php
-/*
     session_start();
     if (isset($_COOKIE["logado"])) {
         if ($_COOKIE["logado"] == 'on') {
@@ -7,9 +6,7 @@
         }
     }
     if (!isset($_SESSION["usuario"])) {
-<<<<<<< HEAD
         header("Location:../visao/login.php");
         exit;
     }
     $usuario = $_SESSION['usuario'];
- */	
