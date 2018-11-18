@@ -88,6 +88,13 @@
                         <a class="dropdown-item" href="listCurso.php">Listar</a>
                     </div>
                 </li>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link navHeader" href="sair.php">Sair
+						<span class="sr-only">(current)</span>
+					</a>
+            </li>
+        </ul>
             </ul>
 
         </div>
