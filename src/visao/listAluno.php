@@ -1,4 +1,20 @@
 <?php
+    session_start();
+    if (isset($_COOKIE["logado"])) {
+        if ($_COOKIE["logado"] == 'on') {
+            $_SESSION["usuario"] = $_COOKIE["usuario"];
+        }
+    }
+    if (!isset($_SESSION["usuario"])) {
+        header("Location: login.php");
+        exit;
+    }
+    $usuario = $_SESSION['usuario'];
+	
+?>
+
+
+<?php
 //Include das classes via autoload
 include_once '../autoload.php';
 //Cria o Controle desta View e instaância o Estudante
