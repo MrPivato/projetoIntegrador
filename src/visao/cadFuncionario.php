@@ -64,7 +64,7 @@ $cursoControle = new ControleCurso();
 $listCursos = new Curso;
 
 $cursos = array();
-$cursos = $cursoControle->controleAcao("listarTodos");
+$cursos = $cursoControle->controleAcao("listarTodos"); 
 ?>
 <!DOCTYPE html>
 <html>
