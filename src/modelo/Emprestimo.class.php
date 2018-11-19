@@ -121,14 +121,14 @@ class Emprestimo implements IBaseModelo{
                 try{
                         $emprestimos = array();
                         //Comando SQL para inserir um emprestimo
-                        if(!is_null($verificacaoEntrega)){
+                        if(!is_null($matriculaEstudante)){
                                 $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao, statusEntrega, condicaoEntrega, condicaoDevolucao, dataDeEntrega FROM Emprestimo WHERE matriculaEstudante LIKE :matriculaEstudante";
                         }else{
                                 // Pesquisa todos
                                 $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao, statusEntrega, condicaoEntrega, condicaoDevolucao, dataDeEntrega FROM Emprestimo";
                         }
                         $this->stmt= $this->conn->prepare($query);
-                        if(!is_null($verificacaoEntrega))$this->stmt->bindValue(':matriculaEstudante', '%'.$matriculaEstudante.'%', PDO::PARAM_STR);
+                        if(!is_null($matriculaEstudante))$this->stmt->bindValue(':matriculaEstudante', '%'.$matriculaEstudante.'%', PDO::PARAM_STR);
                         if($this->stmt->execute()){
                                 // Associa cada registro a uma classe Emprestimo
                                 // Depois, coloca os resultados em um array
@@ -156,72 +156,76 @@ class Emprestimo implements IBaseModelo{
                 }
         }
 
-public function printTodos($emprestimos)
-{
-        if(!empty($emprestimos)){
-                foreach ($emprestimos as $emp) {
-                        $cursoEstudante = "SELECT Estudante.curso
-                                FROM Estudante
-                                INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.$emp->getMatriculaEstudante;";
+        public function printTodos($emprestimos)
+        {
+                $estudanteControle = new ControleEstudante();
+                $listEstudante = new Estudante;
+                $estudantes = $estudanteControle->controleAcao("listarTodos");
 
-                        $nomeEstudante = "SELECT Estudante.nome
-                                FROM Estudante
-                                INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.$emp->getMatriculaEstudante;";
+                if(!empty($emprestimos)){
+                        foreach ($emprestimos as $emp) {
+                                $cursoEstudante = "SELECT Estudante.curso
+                                        FROM Estudante
+                                        INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.".$emp->getMatriculaEstudante()."";
 
-                        if($emp->getCondicaoEntrega == 'novo'){
-                                $condEntrega = "badge-sucess badge-pill'>Novo</span>";
-                        } else if($emp->getCondicaoEntrega == 'regular'){
-                                $condEntrega = "badge-alert badge-pill'>Regular</span>";
-                        }else{
-                                $condEntrega = "badge-danger badge-pill'>Péssimo</span>";
-                        }
+                                $nomeEstudante = "SELECT Estudante.nome
+                                        FROM Estudante
+                                        INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.".$emp->getMatriculaEstudante()."";
 
-
-                        if($emp->getCondicaoDevolucao == 'novo'){
-                                $condDevol = "badge-sucess badge-pill'>Novo</span>";
-                        } else if($emp->getCondicaoEntrega == 'regular'){
-                                $condDevol = "badge-alert badge-pill'>Regular</span>";
-                        }else{
-                                $condDevol = "badge-danger badge-pill'>Péssimo</span>";
-                        }
-
-                        if($emp->getStatusEntrega == 'entregue'){
-                                $statusEnt = "badge-sucess badge-pill'>Entregue</span>";
-                        } else if($emp->getCondicaoEntrega == 'pendente'){
-                                $statusEnt = "badge-alert badge-pill'>Pendente</span>";
-                        }else{
-                                $statusEnt = "badge-danger badge-pill'>Atrasado</span>";
-                        }
-
-                        echo "<tr>
-                                <td>".$cursoEstudante."</td>
-                                <td>".$nomeEstudante."<hr>".
-                                $emp->getMatriculaEstudante()
-                                ."</td>
-                                <td> <div class='container'>
-                                <p>
-                                <button class='btn btn-info bot-list' type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false'
-                                aria-controls='collapseExample'>
-                                Mostrar todas informações do livro
-                                </button>
-                                </p>
-                                <div class='collapse' id='collapseExample'>
-                                <ul class='list-group'>
-                                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                <a href='../visao/cadAluno.php?matricula='.$emp->getCodBarrasLivro().'&op=alt'>".$emp->getCodBarrasLivro."
-                                </li>
-
-                                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                Condição de recebimento
-                                <span class='badge ".$condEntrega ."
+                                if($emp->getCondicaoEntrega() == 'novo'){
+                                        $condEntrega = "badge-sucess badge-pill'>Novo</span>";
+                                } else if($emp->getCondicaoEntrega() == 'regular'){
+                                        $condEntrega = "badge-alert badge-pill'>Regular</span>";
+                                }else{
+                                        $condEntrega = "badge-danger badge-pill'>Péssimo</span>";
+                                }
 
 
-                                </li>
+                                if($emp->getCondicaoDevolucao() == 'novo'){
+                                        $condDevol = "badge-sucess badge-pill'>Novo</span>";
+                                } else if($emp->getCondicaoEntrega() == 'regular'){
+                                        $condDevol = "badge-alert badge-pill'>Regular</span>";
+                                }else{
+                                        $condDevol = "badge-danger badge-pill'>Péssimo</span>";
+                                }
 
-                                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                Condição de devolução
-                                <span class='badge ". $condEntrega 
-                                ."
+                                if($emp->getStatusEntrega() == 'entregue'){
+                                        $statusEnt = "badge-sucess badge-pill'>Entregue</span>";
+                                } else if($emp->getCondicaoEntrega() == 'pendente'){
+                                        $statusEnt = "badge-alert badge-pill'>Pendente</span>";
+                                }else{
+                                        $statusEnt = "badge-danger badge-pill'>Atrasado</span>";
+                                }
+
+                                echo "<tr>
+                                        <td>".$cursoEstudante."</td>
+                                        <td>".$nomeEstudante."<hr>".
+                                        $emp->getMatriculaEstudante()
+                                        ."</td>
+                                        <td> <div class='container'>
+                                        <p>
+                                        <button class='btn btn-info bot-list' type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false'
+                                        aria-controls='collapseExample'>
+                                        Mostrar todas informações do livro
+                                        </button>
+                                        </p>
+                                        <div class='collapse' id='collapseExample'>
+                                        <ul class='list-group'>
+                                        <li class='list-group-item d-flex justify-content-between align-items-center'>
+                                        <a href='../visao/cadAluno.php?matricula='".$emp->getCodBarrasLivro()."'&op=alt'>".$emp->getCodBarrasLivro."
+                                        </li>
+
+                                        <li class='list-group-item d-flex justify-content-between align-items-center'>
+                                        Condição de recebimento
+                                        <span class='badge ".$condEntrega ."
+
+
+                                        </li>
+
+                                        <li class='list-group-item d-flex justify-content-between align-items-center'>
+                                        Condição de devolução
+                                        <span class='badge ". $condEntrega 
+                                        ."
                                                 </li>
 
                                                 <li class='list-group-item d-flex justify-content-between align-items-center'>
@@ -232,26 +236,21 @@ public function printTodos($emprestimos)
 
                                                 <li class='list-group-item d-flex justify-content-between align-items-center'>
                                                     Data de recebimento
-                                                    <span class='badge badge-primary badge-pill'>".$emp->getDataDeEntrega ."</span>
+                                                    <span class='badge badge-primary badge-pill'>".$emp->getDataDeEntrega()."</span>
                                                 </li>
                                                 <li class='list-group-item d-flex justify-content-between align-items-center'>
                                                     Data de devolução
-                                                    <span class='badge badge-secondary badge-pill'>".$emp->getDataDevolucao.".</span>
+                                                    <span class='badge badge-secondary badge-pill'>".$emp->getDataDevolucao().".</span>
                                                 </li>
-                                                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                                    Prazo para entrega
-                                                    <span class='badge badge-danger badge-pill'>".$emp->getPeriodoEntrega.".</span>
-                                                </li>
-
                                             </ul>
                                         </div>
                                     </div></td>" .
-                                        "<td>".$emp->getStatus()."</td>"
+                                        "<td>".$emp->getStatusEntrega()."</td>"
                                          ;  
                                 echo '
                               <td>
                             <!-- Alterar -->
-                            <a href="../visao/cadAluno.php?matricula='.$est->getMatricula().'&op=alt"><button type="button" class="btn btn-warning text-light"">
+                            <a href="../visao/cadAluno.php?matricula='.$estudantes->getMatricula().'&op=alt"><button type="button" class="btn btn-warning text-light"">
                             <i class="fas fa-edit"></i>
                             </button></a>
                             <!-- Deletar -->
@@ -284,65 +283,4 @@ public function printTodos($emprestimos)
                         }
                 }
         }
-
-
-
-
-
 }
-
-
-
-/*<td>
-    <!-- Alterar -->
-    <button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#cpp"> 
-    <i class="fas fa-edit"></i>
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="cpp" tabindex="-1" role="dialog" aria-labelledby="cpp" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
-                <?php 
-                    include_once "cadAluno.php";
-                    ?>
-            </div>
-        </div>
-    </div>
-    <!-- -->
-    <!-- Deletar -->
-    <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2"> 
-    <i class="fas fa-trash-alt"></i>
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class='modal-body'>
-                    <p class='text-dark'>Deseja realmente excluir?</p>
-                </div>
-                <div class='modal-footer'>
-                    <a href='listcrianca.php?id={$registro['id']}' type='button' class='btn btn-success' id='delete'>Confirmar</a>
-                    <button type='button' data-dismiss='modal' class='btn btn-danger'>Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- -->
-    <!-- Mostrar todos -->
-    <button type="button" class="btn btn-info text-light" data-toggle="modal" data-target="#cpp3"> 
-    <i class="fas fa-clipboard-list"></i>
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="cpp3" tabindex="-1" role="dialog" aria-labelledby="cpp3" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
-                <?php 
-                    include_once "listExemplares.php";
-                ?>
-            </div>
-        </div>
-    </div>
-    <!-- -->
-</td>*/
