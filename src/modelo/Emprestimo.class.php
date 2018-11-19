@@ -86,7 +86,7 @@ class Emprestimo implements IBaseModelo{
         public function inserir(){
                 try{
                         //Comando SQL para inserir um emprestimo
-                        $query="INSERT INTO Emprestimo (matriculaEstudante, codBarrasLivro, dataDevolucao, statusEntrega, condicaoEntrega, condicaoDevolucao, dataDeEntrega)
+                        $query="INSERT INTO `Emprestimo` (`matriculaEstudante`, `codBarrasLivro`, `dataDevolucao`, `statusEntrega`, `condicaoEntrega`, `condicaoDevolucao`, `dataDeEntrega`)
                                 VALUES (:matriculaEstudante, :codBarrasLivro, :dataDevolucao, :statusEntrega, :condicaoEntrega, :condicaoDevolucao, :dataDeEntrega) ";
 
                         $this->stmt= $this->conn->prepare($query);
