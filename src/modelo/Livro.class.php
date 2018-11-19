@@ -260,6 +260,14 @@ class Livro implements IBaseModelo{
 
         }
 
+        public function printLivroCod($livros)
+        {
+                if(!empty($livros)){
+                        foreach ($livros as $liv) {
+                                echo "<option>".$liv->getCodBarras()."</option>";
+                        }
+                }
+        }
 
         public function printTodos($livros)
         {

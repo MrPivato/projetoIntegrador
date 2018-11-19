@@ -184,6 +184,25 @@ class Estudante implements IBaseModelo{
 
         }
 
+
+        public function printEstudanteNome($estudantes)
+        {
+                if(!empty($estudantes)){
+                        foreach ($estudantes as $est) {
+                                echo "<option>".$est->getNome()."</option>";
+                        }
+                }
+        }
+
+        public function printEstudanteMatricula($estudantes)
+        {
+                if(!empty($estudantes)){
+                        foreach ($estudantes as $est) {
+                                echo "<option>".$est->getMatricula()."</option>";
+                        }
+                }
+        }
+
         public function printTodos($estudantes)
         {
                 if(!empty($estudantes)){

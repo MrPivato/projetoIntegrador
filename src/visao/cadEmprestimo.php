@@ -24,12 +24,12 @@
           //Verifica qual ação (inserir ou alterar) vai passar para o Controle
           if(empty($_POST["alterar"])){
               $retorno = $emprestimoControle->controleAcao("inserir");
-              if($retorno) {$msg="Estudante inserido com sucesso!";}
-              else{$erro="Houve um erro na inserção do estudante!";}
+              if($retorno) {$msg="Emprestimo inserido com sucesso!";}
+              else{$erro="Houve um erro na inserção do Emprestimo!";}
           }else{
               $retorno = $emprestimoControle->controleAcao("alterar");
-              if($retorno) {$msg="Estudante alterado com sucesso!";}
-              else{$erro="Houve um erro na alteração do estudante!";}
+              if($retorno) {$msg="Emprestimo alterado com sucesso!";}
+              else{$erro="Houve um erro na alteração do Emprestimo!";}
           }
          
       }
@@ -55,17 +55,26 @@
             <div class="cadLivro-form">
                <div class="form-group">
                   <h2>Cadastro de Emprestimos</h2>
-                  <p>NOTA: acho q vai ter q tira esse h2 de cima "Cadastro de Emprestimos", por causa do alterar</p>
-                  <p>NOTA: coloquei tudo q eu achei, ctz que tem coisa a mais, dai tu tira, ctz que é mais rapido q coloca"</p>
-                  <p>NOTA: tem varios hidden q acho q vai ser removido, verifica ai"</p>
                </div>
                <div class="form-group">
                   <label for="nome">Informe o nome do estudante</label>
-                  <input id="nome" name="nome" type="text" placeholder="Informe o nome do estudante" class="form-control" required="">
+                  <select id="nome" name="nome" class="form-control" >
+				  <option selected disabled selected>Escolha o Nome</option>
+				<?php
+					$estudanteControle = new ControleEstudante();
+                    $listEstudante = new Estudante;
+					$estudantes = array();
+					$estudantes = $estudanteControle->controleAcao("listarTodos");
+                    $listEstudante->printEstudanteNome($estudantes);
+				?>
+                  </select>
                </div>
 			     <div class="form-group">
-                  <label for="matricula">Informe a matrícula do estudante(opcional)</label>
-                  <input id="matricula" name="matricula" type="number" placeholder="Informe a matrícula do estudante" class="form-control">
+                  <label for="matricula">Informe a matrícula do estudante</label>
+                  <select id="matricula" name="matricula" class="form-control" >
+				  <option selected disabled selected>Escolha a matricula</option>
+                    <?php $listEstudante->printEstudanteMatricula($estudantes);?>
+                  </select>
                </div>
                <div class="form-group">
                   <label for="curso">Escolha o Curso</label>
@@ -83,7 +92,16 @@
 			   
                <div class="form-group">
                   <label for="livro">Informe o livro</label>
-                  <input id="livro" name="livro" type="text" placeholder="Informe o livro" class="form-control" required="">
+                  <select id="livro" name="livro" class="form-control" >
+				  <option selected disabled selected>Escolha o livro</option>
+				<?php
+					$livroControle = new ControleLivro();
+					$listLivro = new Livro;
+					$livros = array();
+					$livros = $livroControle->controleAcao("listarTodos");
+					$listLivro->printLivroCod($livros);
+				?>
+                  </select>
                </div>
 			   
                <div class="form-group">
@@ -112,24 +130,8 @@
                </div>
 			
 <!-- hidden -->			   
-			   <div class="form-group">
-                  <input id="statusEntrega" name="statusEntrega" type="hidden" value="ativo" placeholder="Informe o status de entrega" class="form-control" >
-               </div>
-			   
 			    <div class="form-group">
-                  <input id="condicaoEntrega" name="condicaoEntrega" type="hidden" value="" placeholder="Informe a 	condicao de entrega" class="form-control" >
-               </div>
-			   
-			    <div class="form-group">
-                  <input id="codBarrasLivro" name="codBarrasLivro" type="hidden" value="" placeholder="Informe o codigo de barras" class="form-control" >
-               </div>
-			   
-			    <div class="form-group">
-                  <input id="verificacaoEntrega" name="verificacaoEntrega" type="hidden" value="" placeholder="Informe a verificacao de entrega" class="form-control" >
-               </div>
-			   
-			   <div class="form-group">
-                  <input id="id" name="id" type="hidden" value="" placeholder="Informe o id" class="form-control" >
+                  <input id="condicaoDevolucao" name="condicaoDevolucao" type="hidden" value="" placeholder="Informe a 	condicao de Devolucao" class="form-control" >
                </div>
 <!-- fim hidden -->				   
 			
