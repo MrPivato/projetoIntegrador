@@ -34,7 +34,6 @@ class ControleEmprestimo extends ControleBase {
                 $this->emprestimo->setMatriculaEstudante((isset($this->visao["matriculaEstudante"]) && $this->visao["matriculaEstudante"] != null) ? $this->visao["matriculaEstudante"] : "");
                 $this->emprestimo->setCodBarrasLivro((isset($this->visao["codBarrasLivro"]) && $this->visao["codBarrasLivro"] != null) ? $this->visao["codBarrasLivro"] : "");
                 $this->emprestimo->setDataDevolucao((isset($this->visao["dataDevolucao"]) && $this->visao["dataDevolucao"] != null) ? $this->visao["dataDevolucao"] : "");
-                $this->emprestimo->setPeriodoEntrega((isset($this->visao["periodoEntrega"]) && $this->visao["periodoEntrega"] != null) ? $this->visao["periodoEntrega"] : "");
                 $this->emprestimo->setStatusEntrega((isset($this->visao["statusEntrega"]) && $this->visao["statusEntrega"] != null) ? $this->visao["statusEntrega"] : "");
                 $this->emprestimo->setCondicaoEntrega((isset($this->visao["condicaoEntrega"]) && $this->visao["condicaoEntrega"] != null) ? $this->visao["condicaoEntrega"] : "");
                 $this->emprestimo->setCondicaoDevolucao((isset($this->visao["condicaoDevolucao"]) && $this->visao["condicaoDevolucao"] != null) ? $this->visao["condicaoDevolucao"] : "");
