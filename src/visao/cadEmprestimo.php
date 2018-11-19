@@ -92,7 +92,7 @@
 			   
                <div class="form-group">
                   <label for="livro">Informe o livro</label>
-                  <select id="livro" name="livro" class="form-control" >
+                  <select id="livro" name="codBarrasLivro" class="form-control" >
 				  <option selected disabled selected>Escolha o livro</option>
 				<?php
 					$livroControle = new ControleLivro();
