@@ -70,16 +70,13 @@ class Emprestimo implements IBaseModelo{
         public function inserir(){
                 try{
                         //Comando SQL para inserir um emprestimo
-                        $query="INSERT INTO `Emprestimo` (`matriculaEstudante`, `codBarrasLivro`, `dataDevolucao`, `statusEntrega`, `condicaoEntrega`, `condicaoDevolucao`, `dataDeEntrega`)
-                                VALUES (:matriculaEstudante, :codBarrasLivro, :dataDevolucao, :statusEntrega, :condicaoEntrega, :condicaoDevolucao, :dataDeEntrega) ";
+                        $query="INSERT INTO `Emprestimo` (`matriculaEstudante`, `codBarrasLivro`, `dataDevolucao`)
+                                VALUES (:matriculaEstudante, :codBarrasLivro, :dataDevolucao) ";
                         $this->stmt= $this->conn->prepare($query);
                         $this->stmt->bindValue(':matriculaEstudante', $this->matriculaEstudante, PDO::PARAM_STR);
                         $this->stmt->bindValue(':codBarrasLivro', $this->codBarrasLivro, PDO::PARAM_STR);
                         $this->stmt->bindValue(':dataDevolucao', $this->dataDevolucao, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':statusEntrega', $this->statusEntrega, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':condicaoEntrega', $this->condicaoEntrega, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':condicaoDevolucao', $this->condicaoDevolucao, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':dataDeEntrega', $this->dataDeEntrega, PDO::PARAM_STR);
+                        
                         if($this->stmt->execute()){
                                 return true;
                         }        
@@ -122,10 +119,10 @@ class Emprestimo implements IBaseModelo{
                         $emprestimos = array();
                         //Comando SQL para inserir um emprestimo
                         if(!is_null($matriculaEstudante)){
-                                $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao, statusEntrega, condicaoEntrega, condicaoDevolucao, dataDeEntrega FROM Emprestimo WHERE matriculaEstudante LIKE :matriculaEstudante";
+                                $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao FROM Emprestimo WHERE matriculaEstudante LIKE :matriculaEstudante";
                         }else{
                                 // Pesquisa todos
-                                $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao, statusEntrega, condicaoEntrega, condicaoDevolucao, dataDeEntrega FROM Emprestimo";
+                                $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao FROM Emprestimo";
                         }
                         $this->stmt= $this->conn->prepare($query);
                         if(!is_null($matriculaEstudante))$this->stmt->bindValue(':matriculaEstudante', '%'.$matriculaEstudante.'%', PDO::PARAM_STR);
@@ -142,7 +139,7 @@ class Emprestimo implements IBaseModelo{
         }
         public function listarUnico($matriculaEstudante){
                 try{
-                        $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao, statusEntrega, condicaoEntrega, condicaoDevolucao, dataDeEntrega FROM Emprestimo WHERE matriculaEstudante=:matriculaEstudante";
+                        $query="SELECT matriculaEstudante, codBarrasLivro, dataDevolucao FROM Emprestimo WHERE matriculaEstudante=:matriculaEstudante";
                         $this->stmt= $this->conn->prepare($query);
                         $this->stmt->bindValue(':matriculaEstudante', $matriculaEstudante, PDO::PARAM_INT);
                         if($this->stmt->execute()){
@@ -164,13 +161,13 @@ class Emprestimo implements IBaseModelo{
 
                 if(!empty($emprestimos)){
                         foreach ($emprestimos as $emp) {
-                                $cursoEstudante = "SELECT Estudante.curso
-                                        FROM Estudante
-                                        INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.".$emp->getMatriculaEstudante()."";
+                                /*$query = "SELECT Estudante.curso
+                                       FROM Estudante
+                                      INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.".$emp->getMatriculaEstudante()."";
 
                                 $nomeEstudante = "SELECT Estudante.nome
-                                        FROM Estudante
-                                        INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.".$emp->getMatriculaEstudante()."";
+                                     FROM Estudante
+                                      INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.".$emp->getMatriculaEstudante()."";
 
                                 if($emp->getCondicaoEntrega() == 'novo'){
                                         $condEntrega = "badge-sucess badge-pill'>Novo</span>";
@@ -195,88 +192,22 @@ class Emprestimo implements IBaseModelo{
                                         $statusEnt = "badge-alert badge-pill'>Pendente</span>";
                                 }else{
                                         $statusEnt = "badge-danger badge-pill'>Atrasado</span>";
-                                }
+                                }*/
 
                                 echo "<tr>
-                                        <td>".$cursoEstudante."</td>
-                                        <td>".$nomeEstudante."<hr>".
-                                        $emp->getMatriculaEstudante()
-                                        ."</td>
-                                        <td> <div class='container'>
-                                        <p>
-                                        <button class='btn btn-info bot-list' type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false'
-                                        aria-controls='collapseExample'>
-                                        Mostrar todas informações do livro
-                                        </button>
-                                        </p>
-                                        <div class='collapse' id='collapseExample'>
-                                        <ul class='list-group'>
-                                        <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                        <a href='../visao/cadAluno.php?matricula='".$emp->getCodBarrasLivro()."'&op=alt'>".$emp->getCodBarrasLivro."
-                                        </li>
+                                        <td>".$emp->getMatriculaEstudante()."</td>
+                                       
+                                        <td>".$emp->getCodBarrasLivro()."</td>
+                                        <td>".$emp->getDataDevolucao()."</td>";
 
-                                        <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                        Condição de recebimento
-                                        <span class='badge ".$condEntrega ."
-
-
-                                        </li>
-
-                                        <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                        Condição de devolução
-                                        <span class='badge ". $condEntrega 
-                                        ."
-                                                </li>
-
-                                                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                                    Condição de recebimento
-                                                    <span class='badge ". $statusEnt  ."
-                                                </li>
-
-
-                                                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                                    Data de recebimento
-                                                    <span class='badge badge-primary badge-pill'>".$emp->getDataDeEntrega()."</span>
-                                                </li>
-                                                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                                                    Data de devolução
-                                                    <span class='badge badge-secondary badge-pill'>".$emp->getDataDevolucao().".</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div></td>" .
-                                        "<td>".$emp->getStatusEntrega()."</td>"
-                                         ;  
+                                          
                                 echo '
                               <td>
                             <!-- Alterar -->
-                            <a href="../visao/cadAluno.php?matricula='.$estudantes->getMatricula().'&op=alt"><button type="button" class="btn btn-warning text-light"">
+                            <a href="../visao/cadEmprestimo.php?matricula='.$emp->getMatriculaEstudante().'&op=alt"><button type="button" class="btn btn-warning text-light"">
                             <i class="fas fa-edit"></i>
                             </button></a>
-                            <!-- Deletar -->
-                            <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
-                            <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
-                               <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                     <div class=\'modal-body\'>
-                                        <p class=\'text-dark\'>Deseja realmente excluir?</p>
-                                     </div>
-                                     <div class=\'modal-footer\'>
-
-                                     <a href="../visao/cadAluno.php?matricula='.$est->getMatricula().'&op=exc" type=\'button\' class=\'btn btn-success\' id=\'delete\'>Confirmar</a>
-                                        <button type=\'button\' data-dismiss=\'modal\' class=\'btn btn-danger\'>Cancelar</button>
-                                     </div>
-                                  </div>
-                               </div>
-                            </div>
-                            <!-- Mostrar todos -->
-                            <a href=\'listEmprestimos.php?id={$registro[\' id \']}\' class="btn btn-info text-light">
-                            <i class="fas fa-clipboard-list"></i>
-                            </a>
-                            <!-- -->
+                            
                          </td>
                        </tr>
                                   ';

@@ -239,11 +239,7 @@ class Estudante implements IBaseModelo{
                                   </div>
                                </div>
                             </div>
-                            <!-- Mostrar todos -->
-                            <a href=\'listEmprestimos.php?id={$registro[\' id \']}\' class="btn btn-info text-light">
-                            <i class="fas fa-clipboard-list"></i>
-                            </a>
-                            <!-- -->
+                           
                          </td>
                        </tr>
                                   ';
