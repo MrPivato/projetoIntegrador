@@ -166,34 +166,14 @@ class Curso implements IBaseModelo{
                                         
                                         " ;  
                                 echo '
-                                <td>
-                                <!-- Alterar -->
-                                <a href="../visao/cadCurso.php?curso='.$est->getCurso().'&op=alt"><button type="button" class="btn btn-warning text-light"">
-                                <i class="fas fa-edit"></i>
-                                </button></a>
-                                <!-- Deletar -->
-                                <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
+                              <td>
+                            <!-- Deletar -->
+                            <a href="../visao/cadCurso.php?curso='.$est->getCurso().'&op=exc" class=\'btn btn-danger\'>
                                 <i class="fas fa-trash-alt"></i>
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
-                                   <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                         <div class=\'modal-body\'>
-                                            <p class=\'text-dark\'>Deseja realmente excluir?</p>
-                                         </div>
-                                         <div class=\'modal-footer\'>
-                                         
-                                         <a href="../visao/cadCurso.php?curso='.$est->getCurso().'&op=exc" type=\'button\' class=\'btn btn-success\' id=\'delete\'>Confirmar</a>
-                                            <button type=\'button\' data-dismiss=\'modal\' class=\'btn btn-danger\'>Cancelar</button>
-                                         </div>
-                                      </div>
-                                   </div>
-                                </div>
-                                <!-- -->
-                             </td>
-                           </tr>
-                                  ';
+                            </a>
+                         </td>
+                       </tr>
+                            ';
                         }
                 }
         }

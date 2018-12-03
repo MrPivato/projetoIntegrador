@@ -194,40 +194,16 @@ class Funcionario implements IBaseModelo{
                                         <td>".$est->getNome()."</td>
                                         <td>".$est->getSenha()."</td>
                                         <td>".$est->getEmail()."</td>
-                                        <td>".$est->getStatus()."</td>
                                         " ;  
                                 echo '
                               <td>
-                            <!-- Alterar -->
-                            <a href="../visao/cadFuncionario.php?matricula='.$est->getId().'&op=alt"><button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#exampleModalCenter">
-                            <i class="fas fa-edit"></i>
-                            </button></a>
                             <!-- Deletar -->
-                            <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
-                            <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
-                               <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                     <div class=\'modal-body\'>
-                                        <p class=\'text-dark\'>Deseja realmente excluir?</p>
-                                     </div>
-                                     <div class=\'modal-footer\'>
-                                        <a href=\'listcrianca.php?id={$registro[\' id \']}\' type=\'button\' class=\'btn btn-success\' id=\'delete\'>Confirmar</a>
-                                        <button type=\'button\' data-dismiss=\'modal\' class=\'btn btn-danger\'>Cancelar</button>
-                                     </div>
-                                  </div>
-                               </div>
-                            </div>
-                            <!-- Mostrar todos -->
-                            <a href=\'listEmprestimos.php?id={$registro[\' id \']}\' class="btn btn-info text-light">
-                            <i class="fas fa-clipboard-list"></i>
+                            <a href="../visao/cadFuncionario.php?id='.$est->getId().'&op=exc" class=\'btn btn-danger\'>
+                                <i class="fas fa-trash-alt"></i>
                             </a>
-                            <!-- -->
                          </td>
                        </tr>
-                                  ';
+                            ';
                         }
                 }
         }

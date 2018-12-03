@@ -195,9 +195,9 @@ class Livro implements IBaseModelo{
                 try{
                         //Comando SQL para inserir um livro
                         $query="DELETE FROM Livro 
-                                WHERE isbn=:isbn ";
+                                WHERE codBarras=:codBarras ";
                         $this->stmt= $this->conn->prepare($query);
-                        $this->stmt->bindValue(':isbn', $this->isbn, PDO::PARAM_STR);
+                        $this->stmt->bindValue(':codBarras', $this->codBarras, PDO::PARAM_STR);
                         if($this->stmt->execute()){
                                 return true;
                         }        
@@ -286,43 +286,13 @@ class Livro implements IBaseModelo{
                                         " ;  
                                 echo '
                               <td>
-                            <!-- Alterar -->
-                            <button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target="#exampleModalCenter">
-                            <i class="fas fa-edit"></i>
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                               <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                     <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">X &nbsp; </button>
-                  '.
-                                        //include_once "formCadAluno.php";
-                              '.
-                                  </div>
-                               </div>
-                            </div>
                             <!-- Deletar -->
-                            <button type="button" class="btn btn-danger text-light" data-toggle="modal" data-target="#cpp2">
-                            <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="cpp2" tabindex="-1" role="dialog" aria-labelledby="cpp2" aria-hidden="true">
-                               <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                     <div class=\'modal-body\'>
-                                        <p class=\'text-dark\'>Deseja realmente excluir?</p>
-                                     </div>
-                                     <div class=\'modal-footer\'>
-                                        <a href=\'listcrianca.php?id={$registro[\' id \']}\' type=\'button\' class=\'btn btn-success\' id=\'delete\'>Confirmar</a>
-                                        <button type=\'button\' data-dismiss=\'modal\' class=\'btn btn-danger\'>Cancelar</button>
-                                     </div>
-                                  </div>
-                               </div>
-                            </div>
-                           
+                            <a href="../visao/cadLivro.php?codBarras='.$liv->getCodBarras().'&op=exc" class=\'btn btn-danger\'>
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
                          </td>
                        </tr>
-                                  ';
+                            ';
                         }
                 }
         }

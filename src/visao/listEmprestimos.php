@@ -35,9 +35,9 @@ $emprestimos = $emprestimoControle->controleAcao("listarTodos");
         <table class="table table-bordered">
             <thead class="headTable">
                 <tr>
-                    <th>Curso</th>
-                    <th>Nome</th>
-                    <th>Dados Livro</th>
+                    <th>Matrícula</th>
+                    <th>Código de Barras</th>
+                    <th>Data para devolução</th>
                     <th>Ações</th>
                 </tr>
             </thead>

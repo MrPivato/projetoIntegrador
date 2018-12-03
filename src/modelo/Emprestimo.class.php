@@ -76,7 +76,7 @@ class Emprestimo implements IBaseModelo{
                         $this->stmt->bindValue(':matriculaEstudante', $this->matriculaEstudante, PDO::PARAM_STR);
                         $this->stmt->bindValue(':codBarrasLivro', $this->codBarrasLivro, PDO::PARAM_STR);
                         $this->stmt->bindValue(':dataDevolucao', $this->dataDevolucao, PDO::PARAM_STR);
-                        
+
                         if($this->stmt->execute()){
                                 return true;
                         }        
@@ -113,7 +113,21 @@ class Emprestimo implements IBaseModelo{
                 }
         }
         public function excluir()
-        {}
+        {
+                try{
+                        //Comando SQL para inserir um estudante
+                        $query="DELETE FROM Emprestimo 
+                                WHERE codBarrasLivro=:codBarrasLivro ";
+                        $this->stmt= $this->conn->prepare($query);
+                        $this->stmt->bindValue(':codBarrasLivro', $this->codBarrasLivro, PDO::PARAM_STR);
+                        if($this->stmt->execute()){
+                                return true;
+                        }        
+                } catch(PDOException $e) {
+                        echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";      
+                        return false;
+                }
+        }
         public function listarTodos($matriculaEstudante=null){
                 try{
                         $emprestimos = array();
@@ -159,58 +173,37 @@ class Emprestimo implements IBaseModelo{
                 $listEstudante = new Estudante;
                 $estudantes = $estudanteControle->controleAcao("listarTodos");
 
+
+                try{
+                        $nomeEstudante = "SELECT Estudante.nome
+                                FROM Estudante
+                                INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.matriculaEstudante";
+
+                        $this->stmt= $this->conn->prepare($nomeEstudante);
+                        if($this->stmt->execute()){
+                                // Associa o registro a uma classe Emprestimo
+                                $estudante = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Emprestimo");  
+                        }
+                } catch(PDOException $e) {
+                        echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";   
+                        return null;
+                }
+
                 if(!empty($emprestimos)){
                         foreach ($emprestimos as $emp) {
-                                /*$query = "SELECT Estudante.curso
-                                       FROM Estudante
-                                      INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.".$emp->getMatriculaEstudante()."";
-
-                                $nomeEstudante = "SELECT Estudante.nome
-                                     FROM Estudante
-                                      INNER JOIN Emprestimo ON Estudante.matricula = Emprestimo.".$emp->getMatriculaEstudante()."";
-
-                                if($emp->getCondicaoEntrega() == 'novo'){
-                                        $condEntrega = "badge-sucess badge-pill'>Novo</span>";
-                                } else if($emp->getCondicaoEntrega() == 'regular'){
-                                        $condEntrega = "badge-alert badge-pill'>Regular</span>";
-                                }else{
-                                        $condEntrega = "badge-danger badge-pill'>Péssimo</span>";
-                                }
-
-
-                                if($emp->getCondicaoDevolucao() == 'novo'){
-                                        $condDevol = "badge-sucess badge-pill'>Novo</span>";
-                                } else if($emp->getCondicaoEntrega() == 'regular'){
-                                        $condDevol = "badge-alert badge-pill'>Regular</span>";
-                                }else{
-                                        $condDevol = "badge-danger badge-pill'>Péssimo</span>";
-                                }
-
-                                if($emp->getStatusEntrega() == 'entregue'){
-                                        $statusEnt = "badge-sucess badge-pill'>Entregue</span>";
-                                } else if($emp->getCondicaoEntrega() == 'pendente'){
-                                        $statusEnt = "badge-alert badge-pill'>Pendente</span>";
-                                }else{
-                                        $statusEnt = "badge-danger badge-pill'>Atrasado</span>";
-                                }*/
-
                                 echo "<tr>
                                         <td>".$emp->getMatriculaEstudante()."</td>
-                                       
                                         <td>".$emp->getCodBarrasLivro()."</td>
-                                        <td>".$emp->getDataDevolucao()."</td>";
-
-                                          
+                                        <td>".$emp->getDataDevolucao().'</td>';
                                 echo '
                               <td>
-                            <!-- Alterar -->
-                            <a href="../visao/cadEmprestimo.php?matricula='.$emp->getMatriculaEstudante().'&op=alt"><button type="button" class="btn btn-warning text-light"">
-                            <i class="fas fa-edit"></i>
-                            </button></a>
-                            
+                            <!-- Deletar -->
+                            <a href="../visao/cadEmprestimo.php?codBarrasLivro='.$emp->getCodBarrasLivro().'&op=exc" class=\'btn btn-danger\'>
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
                          </td>
                        </tr>
-                                  ';
+                            ';
                         }
                 }
         }

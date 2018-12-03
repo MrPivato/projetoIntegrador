@@ -40,11 +40,11 @@ CREATE TABLE Livro (
 CREATE TABLE Emprestimo (
         matriculaEstudante CHAR(12),
         codBarrasLivro VARCHAR(100) PRIMARY KEY,
-        dataDevolucao DATE,
+        dataDevolucao VARCHAR(10),
         statusEntrega VARCHAR(50),
         condicaoEntrega VARCHAR(100),
         condicaoDevolucao VARCHAR(100),
-        dataDeEntrega DATE
+        dataDeEntrega VARCHAR(10)
 );
 
 ALTER TABLE Livro ADD CONSTRAINT FK_Livro_2

@@ -35,7 +35,7 @@ if($_POST){
         if(isset($_GET["op"])){
 
                 //Verifico a existência dos campos obrigatórios
-                if (isset($_GET["matricula"])) {
+                if (isset($_GET["id"])) {
 
                         //Verifica qual ação (excluir ou listar para alteração) vai passar para o Controle
                         if($_GET["op"] == "exc"){

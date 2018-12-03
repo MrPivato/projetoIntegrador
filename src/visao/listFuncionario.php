@@ -43,7 +43,6 @@ include_once 'inc/header.inc.php'
                <th>Nome</th>
                <th>Senha</th>
                <th>Email</th>
-               <th>Status</th>
                <th style="width: 20%">Ação</th>
             </tr>
          </thead>
