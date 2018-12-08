@@ -45,3 +45,31 @@
 .navbar-toggler {
         background-color: #f9f9f9;
 }
+.pagButton{
+        text-decoration: none;
+        background: #2AB685;
+        text-align: center;
+        padding: 10px;
+        margin: 1px;
+        color: #ffffff;
+        border-radius:3px;
+}
+.pagButton:hover, .numativo, .controle:hover{
+        background: #1B543B;
+        color: #ffffff;
+        text-decoration: none;
+}
+.controle{
+        text-decoration: none;
+        background: #2A85B6;
+        text-align: center;
+        padding: 3px 8px;
+        display: block;
+        margin: 0 3px;
+        float: left;
+        color: #fff;
+}
+.pagNav{
+        text-align:center;
+        margin: 10px;
+}

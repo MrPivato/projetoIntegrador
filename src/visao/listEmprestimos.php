@@ -23,9 +23,9 @@ $emprestimos = $emprestimoControle->controleAcao("listarTodos");
         <h2>Pesquisar</h2>
         <p>Selecione o filtro:</p>
         
-        <input type="radio" name="filtro" value="0"> Curso
-        <input type="radio" name="filtro" value="1"> Nome
-        <input type="radio" name="filtro" value="2"> Dados Livro
+        <input type="radio" name="filtro" value="0"> Matrícula
+        <input type="radio" name="filtro" value="1"> Código de Barras
+        <input type="radio" name="filtro" value="2"> Data para devolucão
         <br clear="all"><br clear="all">       
 
         <input class="form-control" onkeyup="filtrar()" id="inputPesquisa" type="text" placeholder="Pesquise aqui">

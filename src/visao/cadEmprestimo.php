@@ -56,6 +56,10 @@ if($_POST){
         }
 }
 
+$estudanteControle = new ControleEstudante();
+$listEstudante = new Estudante;
+$estudantes = array();
+$estudantes = $estudanteControle->controleAcao("listarTodos");
 ?>
    </head>
    <body id="cadLivroForm">
@@ -78,19 +82,8 @@ if(isset($erro)){
                <div class="form-group">
                   <h2>Cadastro de Emprestimos</h2>
                </div>
-               <div class="form-group">
-                  <label for="nome">Informe o nome do estudante</label>
-                  <select id="nome" name="nome" class="form-control" >
-                  <option selected disabled selected>Escolha o Nome</option>
-<?php
-$estudanteControle = new ControleEstudante();
-$listEstudante = new Estudante;
-$estudantes = array();
-$estudantes = $estudanteControle->controleAcao("listarTodos");
-$listEstudante->printEstudanteNome($estudantes);
-?>
-                  </select>
-               </div>
+
+
                  <div class="form-group">
                   <label for="matricula">Informe a matrícula do estudante</label>
                   <select id="matricula" name="matriculaEstudante" class="form-control" >

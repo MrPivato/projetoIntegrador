@@ -228,6 +228,7 @@ class Livro implements IBaseModelo{
                                 // Associa cada registro a uma classe Livro
                                 // Depois, coloca os resultados em um array
                                 $livros = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Livro");  
+                                $total_results = $this->stmt->rowCount();
 
                         }
 
@@ -271,29 +272,59 @@ class Livro implements IBaseModelo{
 
         public function printTodos($livros)
         {
-                if(!empty($livros)){
-                        foreach ($livros as $liv) {
-                                echo "<tr>
-                                        <td>".$liv->getIsbn()."</td>
-                                       
-                                        <td>".$liv->getCodBarras()."</td>
-                                        <td>".$liv->getNome()."</td>
-                                        <td>".$liv->getVolume()."</td>
-                                        <td>".$liv->getAutor()."</td>
-                                        <td>".$liv->getGrande_area()."</td>
-                                        <td>".$liv->getStatus()."</td>
-                                        <td>".$liv->getCondicao()."</td>
-                                        " ;  
-                                echo '
+
+                $limit = 10;
+                $query = "select * from Livro";
+                $db = $this->conn;
+
+                $s = $db->prepare($query);
+                $s->execute();
+                $total_results = $s->rowcount();
+                $total_pages = ceil($total_results/$limit);
+
+                if (!isset($_GET['page'])) {
+                        $page = 1;
+                        $pagina = 1;
+                } else{
+                        $page = $_GET['page'];
+                        $pagina = $_GET['page'];
+                }
+
+                $starting_limit = ($page-1)*$limit;
+                $show  = "SELECT * FROM Livro ORDER BY codBarras DESC LIMIT $starting_limit, $limit";
+
+                $r = $db->prepare($show);
+                $r->execute();
+
+                while($res = $r->fetch(PDO::FETCH_ASSOC)){
+                        echo "<tr>
+                                <td>".$res['isbn']."</td>
+                                <td>".$res['codBarras']."</td>
+                                <td>".$res['nome']."</td>
+                                <td>".$res['volume']."</td>
+                                <td>".$res['autor']."</td>
+                                <td>".$res['grande_area']."</td>
+                                <td>".$res['status']."</td>
+                                <td>".$res['condicao']."</td>
+                                " ;  
+                        echo '
                               <td>
                             <!-- Deletar -->
-                            <a href="../visao/cadLivro.php?codBarras='.$liv->getCodBarras().'&op=exc" class=\'btn btn-danger\'>
+                            <a href="../visao/cadLivro.php?codBarras='.$res['codBarras'].'&op=exc" class=\'btn btn-danger\'>
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                          </td>
                        </tr>
                             ';
-                        }
                 }
+
+                echo '<div class="container pagNav">';
+                for ($page=1; $page <= $total_pages ; $page++){
+                      $ativo = ($page == $pagina) ? 'numativo' : '';
+                      echo '<a class="pagButton '.$ativo.'" href="listLivro.php?page='.$page.'">'
+                              .$page.'</a>';
+                }
+                echo '</div>';
+
         }
 }

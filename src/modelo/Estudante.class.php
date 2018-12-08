@@ -205,25 +205,56 @@ class Estudante implements IBaseModelo{
 
         public function printTodos($estudantes)
         {
-                if(!empty($estudantes)){
-                        foreach ($estudantes as $est) {
-                                echo "<tr>
-                                        <td>".$est->getMatricula()."</td>
-                                        <td>".$est->getNome()."</td>
-                                        <td>".$est->getCurso()."</td>
-                                        <td>".$est->getEmail()."</td>
-                                        <td>".$est->getStatus()."</td>
-                                        " ;  
-                                echo '
+                $limit = 10;
+                $query = "select * from Estudante";
+                $db = $this->conn;
+
+                $s = $db->prepare($query);
+                $s->execute();
+                $total_results = $s->rowcount();
+                $total_pages = ceil($total_results/$limit);
+
+                if (!isset($_GET['page'])) {
+                        $page = 1;
+                        $pagina = 1;
+                } else{
+                        $page = $_GET['page'];
+                        $pagina = $_GET['page'];
+                }
+
+                $starting_limit = ($page-1)*$limit;
+                $show  = "SELECT * FROM Estudante ORDER BY matricula DESC LIMIT $starting_limit, $limit";
+
+                $r = $db->prepare($show);
+                $r->execute();
+
+                while($res = $r->fetch(PDO::FETCH_ASSOC)){
+                        echo "<tr>
+                                <td>".$res['matricula']."</td>
+                                <td>".$res['nome']."</td>
+                                <td>".$res['curso']."</td>
+                                <td>".$res['email']."</td>
+                                <td>".$res['status']."</td>
+                                " ;  
+                        echo '
                               <td>
                             <!-- Deletar -->
-                            <a href="../visao/cadAluno.php?matricula='.$est->getMatricula().'&op=exc" class=\'btn btn-danger\'>
+                            <a href="../visao/cadLivro.php?codBarras='.$res['matricula'].'&op=exc" class=\'btn btn-danger\'>
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                          </td>
                        </tr>
-                                  ';
-                        }
+                            ';
                 }
-        }
+
+                echo '<div class="container pagNav">';
+                for ($page=1; $page <= $total_pages ; $page++){
+                        $ativo = ($page == $pagina) ? 'numativo' : '';
+                        echo '<a class="pagButton '.$ativo.'" href="listAluno.php?page='.$page.'">'
+                                .$page.'</a>';
+                }
+                echo '</div>';
+
+                }
 }
+

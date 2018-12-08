@@ -112,8 +112,7 @@ if($_POST){
            
 			
                 <button id="login" name="login" class="btn btn-primary">Confirmar</button>
-                        
-                <button id="reset" name="cancelar" type="reset" class="btn btn-danger" class="btn btn-primary">Cancelar</button>
+                <button id="reset" name="cancelar" type="reset" class="btn btn-danger" style="width:100%;margin-top:20px;" class="btn btn-primary">Cancelar</button>
                     </form>
             </div>
             </div>

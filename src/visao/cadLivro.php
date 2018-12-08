@@ -126,7 +126,11 @@ $listCategoria->printCategorias($categorias);
             <div class="form-group">
                 <label for="volume">Condições</label>
                     <select id="condicao" name="condicao" class="form-control" required="">
+<<<<<<< Updated upstream
                         <option selected disabled selected>Escolha o volume</option>
+=======
+                        <option selected disabled selected>Escolha a condição</option>
+>>>>>>> Stashed changes
                         <option>Ótimo</option>
                         <option>Regular</option>
                         <option>Levemente estragado</option>
