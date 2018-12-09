@@ -36,14 +36,14 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="im" src="img/oo.jpg" alt="...">
+                    <img class="im" src="img/oo.jpg" alt="Imagem de cadastro de livros">
                     <div class="carousel-caption d-none d-md-block">
                         <h5><a class="sidi" class="ahome2 nav-link" href="cadLivro.php">Cadastrar Livros</a></h5>
                         
                     </div>
                 </div>
                 <div class="carousel-item">
-                        <img class="im" src="img/p.png" alt="...">
+                        <img class="im" src="img/p.png" alt="imagem de cadastrar Alunos">
                         <div class="carousel-caption d-none d-md-block">
                         <h5><a class="sidi" class="ahome2 nav-link" href="cadAluno.php">Cadastrar Alunos</a></h5>
                         
@@ -51,7 +51,7 @@
                 </div>
                
                 <div class="carousel-item">
-                        <img class="im" src="img/b.jpg" alt="...">
+                        <img class="im" src="img/b.jpg" alt="Imagem de cadastrar empréstimos">
                         <div class="carousel-caption d-none d-md-block">
                         <h5><a class="sidi" class="ahome2 nav-link" href="cadEmprestimo.php">Cadastrar Empréstimos</a></h5>
                         
