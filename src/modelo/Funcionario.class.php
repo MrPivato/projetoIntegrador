@@ -68,6 +68,8 @@ class Funcionario implements IBaseModelo{
 
         public function inserir(){
                 try{
+                        $codificada = base64_encode($this->senha);
+
                         //Comando SQL para inserir um funcionario
                         $query="INSERT INTO Funcionario 
                                 VALUES (:id, :nome, :email, :senha, :status) ";
@@ -77,7 +79,7 @@ class Funcionario implements IBaseModelo{
                         $this->stmt->bindValue(':id', $this->id, PDO::PARAM_STR);
                         $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
                         $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-                        $this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_INT);
+                        $this->stmt->bindValue(':senha', $codificada, PDO::PARAM_INT);
                         $this->stmt->bindValue(':status', $this->status, PDO::PARAM_INT);
 
                         if($this->stmt->execute()){

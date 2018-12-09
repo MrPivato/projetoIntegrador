@@ -239,7 +239,7 @@ class Estudante implements IBaseModelo{
                         echo '
                               <td>
                             <!-- Deletar -->
-                            <a href="../visao/cadLivro.php?codBarras='.$res['matricula'].'&op=exc" class=\'btn btn-danger\'>
+                            <a href="../visao/cadAluno.php?matricula='.$res['matricula'].'&op=exc" class=\'btn btn-danger\'>
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                          </td>
