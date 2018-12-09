@@ -6,6 +6,7 @@ session_start();
 // resgata variáveis do formulário
 $usuario = isset($_POST['usuario']) ? $_POST['usuario'] : '';
 $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
+$codificada = base64_encode($senha);
  
 if (empty($usuario) || empty($senha))
 {
@@ -19,7 +20,7 @@ $conexao = new mysqli("localhost", "root","", "projetoIntegrador");
 if ($conexao->connect_error) {
     die("Erro na conexão: ".$conexao->connect_error);
 }
-$sql = "SELECT email,senha FROM Funcionario Where email = '{$_POST["usuario"]}' and senha = '{$_POST["senha"]}'";
+$sql = "SELECT email,senha FROM Funcionario Where email = '{$_POST["usuario"]}' and senha = '{$codificada}'";
 
 $resultado = $conexao->query($sql);
 $registro = $resultado->fetch_array();
