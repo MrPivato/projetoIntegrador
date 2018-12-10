@@ -67,4 +67,4 @@ FOREIGN KEY (codBarrasLivro)
 REFERENCES Livro (codBarras)
 ON DELETE NO ACTION;
 
-INSERT INTO `Funcionario` (`id`, `nome`, `email`, `senha`, `status`) VALUES (NULL, 'admin', 'admin@email.com', 'admin', 'on');
+INSERT INTO `Funcionario` (`id`, `nome`, `email`, `senha`, `status`) VALUES (NULL, 'admin', 'admin@email.com', TO_BASE64('admin'), 'on')
